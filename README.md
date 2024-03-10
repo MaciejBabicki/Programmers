@@ -23,4 +23,5 @@ I have designed this engine and thinking about two implementations:
 
 **Security:** To acces the web page you have to log in.
 
-"C:\Users\macba\OneDrive\Desktop\Programmers.png"
+![Programmers](https://github.com/MaciejBabicki/Programmers/assets/123827748/c271de49-bc31-4677-a039-b11874ff387e)
+
