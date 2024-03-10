@@ -23,4 +23,4 @@ I have designed this engine and thinking about two implementations:
 
 **Security:** To acces the web page you have to log in.
 
-![image](https://github.com/MaciejBabicki/SearchEngine/assets/123827748/dc9ae276-2595-4d8d-8252-96acfb4a1d32)
+"C:\Users\macba\OneDrive\Desktop\Programmers.png"
