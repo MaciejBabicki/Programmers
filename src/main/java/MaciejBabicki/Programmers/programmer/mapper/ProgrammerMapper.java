@@ -10,7 +10,11 @@ public class ProgrammerMapper {
         return new Programmer(
                 programmerDto.getId(),
                 programmerDto.getRepoName(),
-                programmerDto.getFirstName()
+                programmerDto.getRepos(),
+                programmerDto.getFirstName(),
+                programmerDto.getLastName(),
+                programmerDto.getOwner()
+
         );
     }
 
@@ -18,7 +22,10 @@ public class ProgrammerMapper {
         return new ProgrammerDto(
                 programmer.getId(),
                 programmer.getRepoName(),
-                programmer.getFirstName()
+                programmer.getRepos(),
+                programmer.getFirstName(),
+                programmer.getLastName(),
+                programmer.getOwner()
         );
     }
 }

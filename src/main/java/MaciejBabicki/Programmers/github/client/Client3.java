@@ -1,15 +1,20 @@
 package MaciejBabicki.Programmers.github.client;
 
+import MaciejBabicki.Programmers.github.entity.Github;
+import MaciejBabicki.Programmers.github.pojo.Owner;
 import MaciejBabicki.Programmers.programmer.entity.Programmer;
 import MaciejBabicki.Programmers.github.pojo.GithubRepository;
 import MaciejBabicki.Programmers.github.repository.GithubRepo;
 import MaciejBabicki.Programmers.programmer.repository.ProgrammerRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
@@ -19,14 +24,22 @@ public class Client3 {
     private final GithubRepo githubRepo;
     private final ProgrammerRepo programmerRepo;
 
-    Programmer programmer = new Programmer(1l, "repo", "maciej");
-    String githubApiUrl = "https://api.github.com";
-    String login = "MaciejBabicki";
-    String url = githubApiUrl + "/users/" + login + "/repos";
+    Programmer programmer = new Programmer(1l, "repo", new ArrayList<>(), "maciej", "babicki", new Owner());
 
+    @Value("${github.api.url}")
+    private String githubApiUrl;
+    String login = "MaciejBabicki";
     public Programmer getProgrammmer() {
 
+
         WebClient.Builder builder = WebClient.builder();
+        if(githubApiUrl == null){
+            throw new IllegalStateException("GithubApiUrl can't be null");
+        }
+        String url = githubApiUrl + "/users/" + login + "/repos";
+
+        List<GithubRepository> allRepositories = new ArrayList<>();
+        int page=1;
 
         List <GithubRepository> githubResponse = builder.build()
                 .get()
@@ -38,14 +51,19 @@ public class Client3 {
 
         log.info(githubResponse.toString());
 
-        String name = githubResponse.getFirst().getName();
+        allRepositories.addAll(githubResponse);
+        page++;
+
+        log.info(allRepositories.toString());
+
+        String name = githubResponse.getLast().getName();
         String repoUrl = githubResponse.getLast().getUrl();
+        allRepositories = githubResponse.stream().collect(Collectors.toList());
+
+
         log.info("Name: " + name);
-
         programmer.setRepoName(name);
-        Programmer programmer1 = programmerRepo.save(programmer);
-        log.info(programmer1.toString());
 
-        return programmer1;
+        return programmerRepo.save(programmer);
     }
 }

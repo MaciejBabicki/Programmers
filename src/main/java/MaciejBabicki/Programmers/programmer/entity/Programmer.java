@@ -1,10 +1,11 @@
 package MaciejBabicki.Programmers.programmer.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import MaciejBabicki.Programmers.github.pojo.GithubRepository;
+import MaciejBabicki.Programmers.github.pojo.Owner;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,6 +17,10 @@ public class Programmer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String repoName;
+    @OneToMany
+    private List<GithubRepository> repos;
     private String firstName;
+    private String lastName;
+    private Owner owner;
 
 }
