@@ -1,13 +1,12 @@
 package MaciejBabicki.Programmers.github.controller;
 
-import MaciejBabicki.Programmers.github.client.Client1;
-import MaciejBabicki.Programmers.github.client.Client2;
-import MaciejBabicki.Programmers.github.client.Client3;
-import MaciejBabicki.Programmers.github.entity.Github;
+import MaciejBabicki.Programmers.github.service.Service1;
+import MaciejBabicki.Programmers.github.service.Service2;
 import MaciejBabicki.Programmers.github.pojo.GithubRepository;
 import MaciejBabicki.Programmers.programmer.entity.Programmer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,28 +14,22 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class GithubController {
 
     @Autowired
-    private final Client1 client1;
+    private final Service1 service1;
     @Autowired
-    private final Client2 client2;
-    @Autowired
-    private final Client3 cLient3;
+    private final Service2 service2;
 
-    @GetMapping("/api1")
+    @GetMapping("/github")
     public List<GithubRepository> getGithub1() {
-        return client1.getGithubRepositories();
+        return service1.getGithubRepositories();
     }
 
-    @GetMapping("/api2")
-    public Github getGithub() {
-        return client2.getGithub();
-    }
-
-    @GetMapping("/api3")
-    public Programmer getGithub3() {
-        return cLient3.getProgrammmer();
+    @GetMapping("/programmer")
+    public Programmer getProgrammer() {
+        return service2.getProgrammmer();
     }
 
 

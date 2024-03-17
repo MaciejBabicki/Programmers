@@ -1,4 +1,4 @@
-package MaciejBabicki.Programmers.github.client;
+package MaciejBabicki.Programmers.github.service;
 
 import MaciejBabicki.Programmers.github.pojo.GithubRepository;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class Client1Tests {
+public class Service1Tests {
 
     @Test
     public void testGetGithubRepositories() {
@@ -21,12 +21,12 @@ public class Client1Tests {
         String login = "MaciejBabicki";
         String url = githubApiUrl + "/users/" + login + "/repos";
         RestTemplate restTemplateMock = Mockito.mock(RestTemplate.class);
-        Client1 client1 = new Client1(restTemplateMock);
+        Service1 service1 = new Service1(restTemplateMock);
         ResponseEntity<String> mockResponseEntity = new ResponseEntity<>(url, HttpStatus.OK);
         //when
         when(restTemplateMock.getForEntity(url, String.class, login))
                 .thenReturn(mockResponseEntity);
-        List<GithubRepository> result = client1.getGithubRepositories();
+        List<GithubRepository> result = service1.getGithubRepositories();
         //then
         assertEquals(url, result);
     }

@@ -1,7 +1,6 @@
 package MaciejBabicki.Programmers.programmer.dto;
 
 import MaciejBabicki.Programmers.github.pojo.GithubRepository;
-import MaciejBabicki.Programmers.github.pojo.Owner;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

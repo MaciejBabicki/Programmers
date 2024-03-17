@@ -1,8 +1,6 @@
-package MaciejBabicki.Programmers.github.client;
+package MaciejBabicki.Programmers.github.service;
 
 import MaciejBabicki.Programmers.github.pojo.GithubRepository;
-import MaciejBabicki.Programmers.github.pojo.Owner;
-import MaciejBabicki.Programmers.github.repository.GithubRepo;
 import MaciejBabicki.Programmers.programmer.entity.Programmer;
 import MaciejBabicki.Programmers.programmer.repository.ProgrammerRepo;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +16,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Component
 @Slf4j
-public class Client3 {
+public class Service2 {
 
-    private final GithubRepo githubRepo;
     private final ProgrammerRepo programmerRepo;
 
     Programmer programmer = new Programmer(1L, "repo", new ArrayList<>(), "maciej", "babicki");

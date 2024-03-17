@@ -1,9 +1,11 @@
 package MaciejBabicki.Programmers.programmer.entity;
 
 import MaciejBabicki.Programmers.github.pojo.GithubRepository;
-import MaciejBabicki.Programmers.github.pojo.Owner;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 

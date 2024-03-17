@@ -1,4 +1,4 @@
-package MaciejBabicki.Programmers.github.client;
+package MaciejBabicki.Programmers.github.service;
 
 import MaciejBabicki.Programmers.github.pojo.Branch;
 import MaciejBabicki.Programmers.github.pojo.GithubRepository;
@@ -10,13 +10,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class Client1 {
+public class Service1 {
 
     private String githubApiUrl = "https://api.github.com";
     private String login = "MaciejBabicki";
     private final RestTemplate restTemplate;
 
-    public Client1(RestTemplate restTemplate) {
+    public Service1(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

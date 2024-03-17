@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/programmer")
+@RequestMapping("/programmers")
 public class ProgrammerController {
 
     private final ProgrammerServiceImpl programmerServiceImpl;
@@ -27,7 +27,7 @@ public class ProgrammerController {
                 .body(savedProgrammerDto);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ProgrammerDto>> getProgrammers(){
         List<ProgrammerDto> programmerDtos = programmerServiceImpl.getProgrammers();
         return ResponseEntity.ok(programmerDtos);
