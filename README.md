@@ -10,7 +10,7 @@ I have designed this engine and thinking about two implementations:
 
 **Testing:** JUnit, Mockito, MockMvc
 
-**Frontend:** JavaScript, React.js, HTML, CSS, vite.js, bootstrap *(look at the Frontend Branch)*
+**Frontend:** JavaScript, React.js, HTML, CSS, vite.js, bootstrap 
 
 **Databese:** MySQL
 
