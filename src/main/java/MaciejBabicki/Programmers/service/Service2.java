@@ -1,6 +1,6 @@
 package MaciejBabicki.Programmers.service;
 
-import MaciejBabicki.Programmers.pojo.GithubRepository;
+import MaciejBabicki.Programmers.entity.GithubRepository;
 import MaciejBabicki.Programmers.entity.Programmer;
 import MaciejBabicki.Programmers.repository.ProgrammerRepo;
 import lombok.RequiredArgsConstructor;

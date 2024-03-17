@@ -1,6 +1,6 @@
 package MaciejBabicki.Programmers.github.service;
 
-import MaciejBabicki.Programmers.pojo.GithubRepository;
+import MaciejBabicki.Programmers.entity.GithubRepository;
 import MaciejBabicki.Programmers.service.Service1;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

@@ -1,4 +1,4 @@
-package MaciejBabicki.Programmers.pojo;
+package MaciejBabicki.Programmers.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -1,9 +1,7 @@
 package MaciejBabicki.Programmers.service;
 
-import MaciejBabicki.Programmers.dto.ProgrammerDto;
 import MaciejBabicki.Programmers.entity.Programmer;
 import MaciejBabicki.Programmers.exception.ResourceNotFoundException;
-import MaciejBabicki.Programmers.mapper.ProgrammerMapper;
 import MaciejBabicki.Programmers.repository.ProgrammerRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,26 +15,22 @@ public class ProgrammerServiceImpl implements ProgrammerService {
     private final ProgrammerRepo programmerRepo;
 
     @Override
-    public ProgrammerDto createProgrammer(ProgrammerDto programmerDto) {
-        Programmer programmer = ProgrammerMapper.mapToProgrammer(programmerDto);
-        Programmer savedProgrammer = programmerRepo.save(programmer);
-        return ProgrammerMapper.mapToProgrammerDto(savedProgrammer);
+    public Programmer createProgrammer(Programmer programmer) {
+        return programmerRepo.save(programmer);
     }
 
     @Override
-    public List<ProgrammerDto> getProgrammers(){
+    public List<Programmer> getProgrammers() {
         List<Programmer> programmers = programmerRepo.findAll();
-        return programmers.stream()
-                .map(ProgrammerMapper::mapToProgrammerDto)
-                .toList();
+        return programmers;
     }
 
     @Override
-    public ProgrammerDto getProgrammerById(Long id) {
-        Programmer programmer=programmerRepo
+    public Programmer getProgrammerById(Long id) {
+        Programmer programmer = programmerRepo
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException());
-        return ProgrammerMapper.mapToProgrammerDto(programmer);
+        return programmer;
 
     }
 

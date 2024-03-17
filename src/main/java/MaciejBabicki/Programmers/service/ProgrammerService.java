@@ -1,14 +1,14 @@
 package MaciejBabicki.Programmers.service;
 
-import MaciejBabicki.Programmers.dto.ProgrammerDto;
+import MaciejBabicki.Programmers.entity.Programmer;
 
 import java.util.List;
 
 public interface ProgrammerService {
 
-    ProgrammerDto createProgrammer(ProgrammerDto programmerDto);
+    Programmer createProgrammer(Programmer programmer);
 
-    List<ProgrammerDto> getProgrammers();
+    List<Programmer> getProgrammers();
 
-    ProgrammerDto getProgrammerById(Long id);
+    Programmer getProgrammerById(Long id);
 }

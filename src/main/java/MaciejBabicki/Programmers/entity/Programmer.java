@@ -1,6 +1,5 @@
 package MaciejBabicki.Programmers.entity;
 
-import MaciejBabicki.Programmers.pojo.GithubRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
