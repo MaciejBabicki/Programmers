@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@Entity
 public class Owner {
-    @Id
+
     private String login;
 
 }
