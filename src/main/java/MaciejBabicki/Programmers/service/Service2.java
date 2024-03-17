@@ -26,7 +26,7 @@ public class Service2 {
     private String githubApiUrl;
     String login = "MaciejBabicki";
 
-    public Programmer getProgrammmer() {
+    public Programmer createProgrammmer() {
 
         WebClient.Builder builder = WebClient.builder();
         if (githubApiUrl == null) {
@@ -37,19 +37,15 @@ public class Service2 {
         String url = githubApiUrl + "/users/" + login + "/repos";
 
         List<GithubRepository> allRepositories = new ArrayList<>();
-        int page = 1;
-
         List<GithubRepository> githubResponse = builder.build().get().uri(url).retrieve().bodyToFlux(GithubRepository.class).collectList().block();
-
         log.info(githubResponse.toString());
 
         allRepositories.addAll(githubResponse);
-        page++;
 
         log.info(allRepositories.toString());
 
         String name = githubResponse.getLast().getName();
-        String repoUrl = githubResponse.getLast().getUrl();
+
         allRepositories = githubResponse.stream().collect(Collectors.toList());
 
 

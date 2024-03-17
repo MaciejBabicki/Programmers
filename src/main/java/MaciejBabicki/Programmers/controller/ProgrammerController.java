@@ -25,16 +25,16 @@ public class ProgrammerController {
         return service1.getGithubRepositories();
     }
 
-    @PostMapping("/")
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Programmer> createProgrammer(@RequestBody Programmer programmer) {
-        Programmer savedProgrammer = programmerServiceImpl.createProgrammer(programmer);
+        Programmer savedProgrammer = programmerServiceImpl.createProgrammer();
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(savedProgrammer);
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<Programmer>> getProgrammers() {
         List<Programmer> programmers = programmerServiceImpl.getProgrammers();
         return ResponseEntity.ok(programmers);

@@ -13,24 +13,24 @@ import java.util.List;
 public class ProgrammerServiceImpl implements ProgrammerService {
 
     private final ProgrammerRepo programmerRepo;
+    private final Service2 service2;
 
     @Override
-    public Programmer createProgrammer(Programmer programmer) {
+    public Programmer createProgrammer() {
+        Programmer programmer = service2.createProgrammmer();
         return programmerRepo.save(programmer);
     }
 
     @Override
     public List<Programmer> getProgrammers() {
-        List<Programmer> programmers = programmerRepo.findAll();
-        return programmers;
+        return programmerRepo.findAll();
     }
 
     @Override
     public Programmer getProgrammerById(Long id) {
-        Programmer programmer = programmerRepo
+        return programmerRepo
                 .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException());
-        return programmer;
+                .orElseThrow(ResourceNotFoundException::new);
 
     }
 

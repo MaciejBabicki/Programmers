@@ -1,19 +1,24 @@
 package MaciejBabicki.Programmers.pojo;
 
+import MaciejBabicki.Programmers.entity.GithubRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class Branch {
 
-    @JsonProperty("name")
+    @Id
     private String name;
 
-    @JsonProperty("commit")
-    private MaciejBabicki.Programmers.pojo.Commit Commit;
+    @OneToOne
+    private Commit Commit;
+
+    @ManyToOne
+    private GithubRepository githubRepository;
 
 }

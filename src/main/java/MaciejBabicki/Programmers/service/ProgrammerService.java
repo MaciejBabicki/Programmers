@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProgrammerService {
 
-    Programmer createProgrammer(Programmer programmer);
+    Programmer createProgrammer();
 
     List<Programmer> getProgrammers();
 
