@@ -21,7 +21,7 @@ I have designed this engine and thinking about two implementations:
 
 **Searching Repositories:** You can find the Github repositories for concrete programmer, filter not fork repositories, see the branches, last commits and more.
 
-**Security:** To acces the web page you have to log in.
+**Security:** To access the web page you have to log in.
 
 ![Programmers](https://github.com/MaciejBabicki/Programmers/assets/123827748/c271de49-bc31-4677-a039-b11874ff387e)
 
