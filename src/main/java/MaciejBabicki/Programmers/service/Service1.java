@@ -1,7 +1,7 @@
-package MaciejBabicki.Programmers.github.service;
+package MaciejBabicki.Programmers.service;
 
-import MaciejBabicki.Programmers.github.pojo.Branch;
-import MaciejBabicki.Programmers.github.pojo.GithubRepository;
+import MaciejBabicki.Programmers.pojo.Branch;
+import MaciejBabicki.Programmers.pojo.GithubRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

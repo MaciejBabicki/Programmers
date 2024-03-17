@@ -1,4 +1,4 @@
-package MaciejBabicki.Programmers.github.service;
+package MaciejBabicki.Programmers.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

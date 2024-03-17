@@ -1,8 +1,8 @@
-package MaciejBabicki.Programmers.github.service;
+package MaciejBabicki.Programmers.service;
 
-import MaciejBabicki.Programmers.github.pojo.GithubRepository;
-import MaciejBabicki.Programmers.programmer.entity.Programmer;
-import MaciejBabicki.Programmers.programmer.repository.ProgrammerRepo;
+import MaciejBabicki.Programmers.pojo.GithubRepository;
+import MaciejBabicki.Programmers.entity.Programmer;
+import MaciejBabicki.Programmers.repository.ProgrammerRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

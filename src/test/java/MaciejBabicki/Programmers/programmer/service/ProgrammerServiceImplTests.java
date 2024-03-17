@@ -1,9 +1,10 @@
 package MaciejBabicki.Programmers.programmer.service;
 
-import MaciejBabicki.Programmers.programmer.dto.ProgrammerDto;
-import MaciejBabicki.Programmers.programmer.entity.Programmer;
-import MaciejBabicki.Programmers.programmer.mapper.ProgrammerMapper;
-import MaciejBabicki.Programmers.programmer.repository.ProgrammerRepo;
+import MaciejBabicki.Programmers.service.ProgrammerServiceImpl;
+import MaciejBabicki.Programmers.dto.ProgrammerDto;
+import MaciejBabicki.Programmers.entity.Programmer;
+import MaciejBabicki.Programmers.mapper.ProgrammerMapper;
+import MaciejBabicki.Programmers.repository.ProgrammerRepo;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

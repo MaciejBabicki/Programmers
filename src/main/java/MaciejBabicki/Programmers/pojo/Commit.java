@@ -1,4 +1,4 @@
-package MaciejBabicki.Programmers.github.pojo;
+package MaciejBabicki.Programmers.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,12 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Branch {
+public class Commit {
 
-    @JsonProperty("name")
-    private String name;
-
-    @JsonProperty("commit")
-    private MaciejBabicki.Programmers.github.pojo.Commit Commit;
-
+    @JsonProperty("sha")
+    private String sha;
 }

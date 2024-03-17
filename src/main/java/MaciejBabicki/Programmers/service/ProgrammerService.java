@@ -1,6 +1,6 @@
-package MaciejBabicki.Programmers.programmer.service;
+package MaciejBabicki.Programmers.service;
 
-import MaciejBabicki.Programmers.programmer.dto.ProgrammerDto;
+import MaciejBabicki.Programmers.dto.ProgrammerDto;
 
 import java.util.List;
 

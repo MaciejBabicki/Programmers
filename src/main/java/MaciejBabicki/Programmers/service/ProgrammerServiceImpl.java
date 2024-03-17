@@ -1,10 +1,10 @@
-package MaciejBabicki.Programmers.programmer.service;
+package MaciejBabicki.Programmers.service;
 
-import MaciejBabicki.Programmers.programmer.dto.ProgrammerDto;
-import MaciejBabicki.Programmers.programmer.entity.Programmer;
-import MaciejBabicki.Programmers.programmer.exception.ResourceNotFoundException;
-import MaciejBabicki.Programmers.programmer.mapper.ProgrammerMapper;
-import MaciejBabicki.Programmers.programmer.repository.ProgrammerRepo;
+import MaciejBabicki.Programmers.dto.ProgrammerDto;
+import MaciejBabicki.Programmers.entity.Programmer;
+import MaciejBabicki.Programmers.exception.ResourceNotFoundException;
+import MaciejBabicki.Programmers.mapper.ProgrammerMapper;
+import MaciejBabicki.Programmers.repository.ProgrammerRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

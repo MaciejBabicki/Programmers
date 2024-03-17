@@ -1,6 +1,6 @@
-package MaciejBabicki.Programmers.programmer.repository;
+package MaciejBabicki.Programmers.repository;
 
-import MaciejBabicki.Programmers.programmer.entity.Programmer;
+import MaciejBabicki.Programmers.entity.Programmer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

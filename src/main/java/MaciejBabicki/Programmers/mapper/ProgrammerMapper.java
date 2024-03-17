@@ -1,7 +1,7 @@
-package MaciejBabicki.Programmers.programmer.mapper;
+package MaciejBabicki.Programmers.mapper;
 
-import MaciejBabicki.Programmers.programmer.dto.ProgrammerDto;
-import MaciejBabicki.Programmers.programmer.entity.Programmer;
+import MaciejBabicki.Programmers.dto.ProgrammerDto;
+import MaciejBabicki.Programmers.entity.Programmer;
 
 
 public class ProgrammerMapper {
