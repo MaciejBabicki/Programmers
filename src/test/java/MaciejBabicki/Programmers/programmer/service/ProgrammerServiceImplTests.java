@@ -15,11 +15,11 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ProgrammerServiceTests {
+public class ProgrammerServiceImplTests {
 
 
     private ProgrammerRepo programmerRepo = mock(ProgrammerRepo.class);
-    private ProgrammerService programmerService = new ProgrammerService(programmerRepo);
+    private ProgrammerServiceImpl programmerServiceImpl = new ProgrammerServiceImpl(programmerRepo);
     private final Programmer programmer = mock(Programmer.class);
     private final ProgrammerDto programmerDto =mock(ProgrammerDto.class);
 
@@ -31,7 +31,7 @@ public class ProgrammerServiceTests {
         Programmer createdProgrammer = ProgrammerMapper.mapToProgrammer(programmerDto);
         when(programmerRepo.save(any(Programmer.class))).thenReturn(createdProgrammer);
 
-        ProgrammerDto createdProgrammerDto = programmerService.createProgrammer(programmerDto);
+        ProgrammerDto createdProgrammerDto = programmerServiceImpl.createProgrammer(programmerDto);
         Assertions.assertNotNull(createdProgrammerDto);
         Assertions.assertEquals(programmerDto.getFirstName(), createdProgrammerDto.getFirstName());
     }
@@ -41,7 +41,7 @@ public class ProgrammerServiceTests {
         programmer.setId(existingProgrammerId);
 
         when(programmerRepo.findById(existingProgrammerId)).thenReturn(Optional.of(programmer));
-        ProgrammerDto createdProgrammerDto = programmerService.getProgrammerById(existingProgrammerId);
+        ProgrammerDto createdProgrammerDto = programmerServiceImpl.getProgrammerById(existingProgrammerId);
 
         Assertions.assertEquals(programmer.getId(), createdProgrammerDto.getId());
 
@@ -52,7 +52,7 @@ public class ProgrammerServiceTests {
     @Test
     public void getProgrammers(){
         List<Programmer> programmers = new ArrayList<>();
-        Assertions.assertEquals(programmerService.getProgrammers(), programmers);
+        Assertions.assertEquals(programmerServiceImpl.getProgrammers(), programmers);
     }
 
 

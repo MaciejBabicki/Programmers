@@ -1,5 +1,6 @@
 package MaciejBabicki.Programmers.github.client;
 
+import MaciejBabicki.Programmers.github.pojo.Branch;
 import MaciejBabicki.Programmers.github.pojo.GithubRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

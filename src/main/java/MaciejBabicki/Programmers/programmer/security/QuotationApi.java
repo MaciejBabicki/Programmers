@@ -15,12 +15,12 @@ public class QuotationApi {
 
 
     QuotationExceptionHandler handler = new QuotationExceptionHandler();
-    private List <Quotation> quotations;
+    private final List<Quotation> quotations;
 
     public QuotationApi() {
         this.quotations = new ArrayList<>();
-        quotations.add(new Quotation(1,"Hello", "Maciej"));
-        quotations.add(new Quotation(2,"Good Day", "Jonasz"));
+        quotations.add(new Quotation(1, "Hello", "Maciej"));
+        quotations.add(new Quotation(2, "Good Day", "Jonasz"));
     }
 
 
@@ -40,20 +40,21 @@ public class QuotationApi {
         } catch (IndexOutOfBoundsException exception) {
             handler.handleIndexOutOfBoundException(exception);
         }
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
 
 
     @ResponseBody
     @GetMapping("/api")
-    public List<Quotation> getQuotations(){return quotations; };
+    public List<Quotation> getQuotations() {
+        return quotations;
+    }
 
     @DeleteMapping("/api/{id}")
-    public void deleteQuotations(@PathVariable Long id){
+    public void deleteQuotations(@PathVariable Long id) {
         quotations.remove(id);
 
     }
-
 
 
 }
