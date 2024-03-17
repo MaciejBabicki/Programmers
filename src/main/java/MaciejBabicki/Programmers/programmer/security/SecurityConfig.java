@@ -1,4 +1,4 @@
-package MaciejBabicki.Programmers;
+package MaciejBabicki.Programmers.programmer.security;
 
 
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package MaciejBabicki.Programmers;
+package MaciejBabicki.Programmers.programmer.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
