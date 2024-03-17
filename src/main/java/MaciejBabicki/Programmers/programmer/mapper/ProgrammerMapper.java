@@ -12,8 +12,7 @@ public class ProgrammerMapper {
                 programmerDto.getRepoName(),
                 programmerDto.getRepos(),
                 programmerDto.getFirstName(),
-                programmerDto.getLastName(),
-                programmerDto.getOwner()
+                programmerDto.getLastName()
 
         );
     }
@@ -24,8 +23,7 @@ public class ProgrammerMapper {
                 programmer.getRepoName(),
                 programmer.getRepos(),
                 programmer.getFirstName(),
-                programmer.getLastName(),
-                programmer.getOwner()
+                programmer.getLastName()
         );
     }
 }

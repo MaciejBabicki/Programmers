@@ -17,5 +17,5 @@ public class ProgrammerDto {
     private List<GithubRepository> repos;
     private String firstName;
     private String lastName;
-    private Owner owner;
+
 }

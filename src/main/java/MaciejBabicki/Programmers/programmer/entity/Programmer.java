@@ -21,6 +21,5 @@ public class Programmer {
     private List<GithubRepository> repos;
     private String firstName;
     private String lastName;
-    private Owner owner;
 
 }

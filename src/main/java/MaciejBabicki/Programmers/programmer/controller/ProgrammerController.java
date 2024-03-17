@@ -17,7 +17,6 @@ import java.util.List;
 public class ProgrammerController {
 
     private final ProgrammerServiceImpl programmerServiceImpl;
-    private final ProgrammerRepo programmerRepo;
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)

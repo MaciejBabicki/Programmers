@@ -23,7 +23,7 @@ public class Client3 {
     private final GithubRepo githubRepo;
     private final ProgrammerRepo programmerRepo;
 
-    Programmer programmer = new Programmer(1L, "repo", new ArrayList<>(), "maciej", "babicki", new Owner());
+    Programmer programmer = new Programmer(1L, "repo", new ArrayList<>(), "maciej", "babicki");
 
     @Value("${github.api.url}")
     private String githubApiUrl;
