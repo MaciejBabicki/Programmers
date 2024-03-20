@@ -1,10 +1,10 @@
-package MaciejBabicki.Programmers.service;
+package pl.programmers.service;
 
-import MaciejBabicki.Programmers.entity.Programmer;
-import MaciejBabicki.Programmers.exception.ResourceNotFoundException;
-import MaciejBabicki.Programmers.repository.ProgrammerRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.programmers.entity.Programmer;
+import pl.programmers.exception.ResourceNotFoundException;
+import pl.programmers.repository.ProgrammerRepo;
 
 import java.util.List;
 
@@ -31,8 +31,5 @@ public class ProgrammerServiceImpl implements ProgrammerService {
         return programmerRepo
                 .findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
-
     }
-
-
 }

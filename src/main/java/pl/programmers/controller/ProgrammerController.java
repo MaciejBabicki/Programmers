@@ -1,9 +1,9 @@
-package MaciejBabicki.Programmers.controller;
+package pl.programmers.controller;
 
-import MaciejBabicki.Programmers.entity.Programmer;
-import MaciejBabicki.Programmers.entity.GithubRepository;
-import MaciejBabicki.Programmers.service.ProgrammerServiceImpl;
-import MaciejBabicki.Programmers.service.Service1;
+import pl.programmers.entity.Programmer;
+import pl.programmers.entity.GithubRepository;
+import pl.programmers.service.ProgrammerServiceImpl;
+import pl.programmers.service.Service1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
-package MaciejBabicki.Programmers.service;
+package pl.programmers.service;
 
-import MaciejBabicki.Programmers.entity.Programmer;
+import pl.programmers.entity.Programmer;
 
 import java.util.List;
 
@@ -11,4 +11,5 @@ public interface ProgrammerService {
     List<Programmer> getProgrammers();
 
     Programmer getProgrammerById(Long id);
+
 }
