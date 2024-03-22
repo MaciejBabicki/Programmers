@@ -1,4 +1,4 @@
-package pl.programmers.service;
+package pl.programmers.service.importservice;
 
 import pl.programmers.entity.Branch;
 import pl.programmers.entity.GithubRepository;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class Service1 {
+public class GithubImportService {
 
     private final RestTemplate restTemplate;
 
@@ -21,7 +21,7 @@ public class Service1 {
     @Value("${github.login}")
     private String login;
 
-    public Service1(RestTemplate restTemplate)  {
+    public GithubImportService(RestTemplate restTemplate)  {
         this.restTemplate = restTemplate;
     }
     public List<GithubRepository> getGithubRepositories() {
