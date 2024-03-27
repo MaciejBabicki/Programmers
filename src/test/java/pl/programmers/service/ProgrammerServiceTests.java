@@ -59,13 +59,15 @@ public class ProgrammerServiceTests {
     @Test
     public void test_GetProgrammers_CompleteList() {
         //given
+        List<Programmer> programmers = new ArrayList<>();
         List<ProgrammerDto> programmerDtos = new ArrayList<>();
         programmerDtos.add(programmerDto);
         //when
+        when(programmerRepo.findAll()).thenReturn(programmers);
         List<ProgrammerDto> result = programmerService.getProgrammers();
         //then
-        assertNotNull(programmerDtos);
-        assertEquals(1, programmerDtos.size());
+        assertNotNull(result);
+        assertEquals(1, result.size());
     }
 
     @Test
@@ -94,9 +96,12 @@ public class ProgrammerServiceTests {
     @Test
     public void test_GetProgrammerById_ProgrammerNotFound() {
         //given
-        when(programmerService.getProgrammerById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
-        //when
-        programmerService.getProgrammerById(existingProgrammerId);
-        //then
+        programmerDto.setId(1L);
+        programmer.setId(1L);
+        when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
+        //when & then
+        assertThrows(ResourceNotFoundException.class, () -> {
+            programmerService.getProgrammerById(nonExistingProgrammerId);
+        });
     }
 }

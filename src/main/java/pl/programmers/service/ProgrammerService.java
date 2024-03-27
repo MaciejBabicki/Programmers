@@ -42,7 +42,7 @@ public class ProgrammerService {
     }
 
     public void deleteProgrammer(Long id) {
-        Programmer programmer = programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
+        programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
         programmerRepo.deleteById(id);
     }
 }
