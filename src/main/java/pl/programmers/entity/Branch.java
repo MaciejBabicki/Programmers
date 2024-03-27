@@ -8,7 +8,4 @@ import lombok.Setter;
 public class Branch {
     private String name;
     private Commit Commit;
-
-
-
 }

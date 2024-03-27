@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProgrammerService {
-
     private final ProgrammerRepo programmerRepo;
     private final ProgrammerImportService service;
 
@@ -26,22 +25,16 @@ public class ProgrammerService {
 
     public List<ProgrammerDto> getProgrammers() {
         List<Programmer> programmers = programmerRepo.findAll();
-        return programmers.stream()
-                .map(ProgrammerMapper::mapToProgrammerDto)
-                .toList();
+        return programmers.stream().map(ProgrammerMapper::mapToProgrammerDto).toList();
     }
 
     public ProgrammerDto getProgrammerById(Long id) {
-        Programmer programmer = programmerRepo
-                .findById(id)
-                .orElseThrow(ResourceNotFoundException::new);
+        Programmer programmer = programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
         return ProgrammerMapper.mapToProgrammerDto(programmer);
     }
 
     public ProgrammerDto updateProgrammer(Long id) {
-        Programmer programmer = programmerRepo
-                .findById(id)
-                .orElseThrow(ResourceNotFoundException::new);
+        Programmer programmer = programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
         programmer.setFirstName(programmer.getFirstName());
         programmer.setLastName(programmer.getLastName());
         programmer.setRepoName(programmer.getRepoName());
@@ -49,9 +42,7 @@ public class ProgrammerService {
     }
 
     public void deleteProgrammer(Long id) {
-        Programmer programmer = programmerRepo
-                .findById(id)
-                .orElseThrow(ResourceNotFoundException::new);
+        Programmer programmer = programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
         programmerRepo.deleteById(id);
     }
 }

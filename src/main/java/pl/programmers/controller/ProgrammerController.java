@@ -15,7 +15,7 @@ public class ProgrammerController {
     private final ProgrammerService programmerService;
 
     @PostMapping
-    public ProgrammerDto createProgrammer(@RequestBody ProgrammerDto programmerDto){
+    public ProgrammerDto createProgrammer(@RequestBody ProgrammerDto programmerDto) {
         return programmerService.createProgrammer();
     }
 
@@ -30,12 +30,12 @@ public class ProgrammerController {
     }
 
     @PutMapping("/{id}")
-    public ProgrammerDto updateProgrammer(@PathVariable("id") Long id){
+    public ProgrammerDto updateProgrammer(@PathVariable("id") Long id) {
         return programmerService.updateProgrammer(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProgrammer(@PathVariable("id") Long id){
+    public void deleteProgrammer(@PathVariable("id") Long id) {
         programmerService.deleteProgrammer(id);
     }
 }

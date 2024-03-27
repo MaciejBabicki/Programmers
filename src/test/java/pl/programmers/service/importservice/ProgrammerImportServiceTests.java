@@ -7,7 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
 import org.springframework.web.reactive.function.client.WebClient;
 import pl.programmers.entity.GithubRepository;
 import pl.programmers.entity.Programmer;
@@ -20,11 +19,8 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 public class ProgrammerImportServiceTests {
-
     @Mock
     WebClient.Builder webClientBuilder;
-    @Mock
-    private ProgrammerRepo programmerRepo;
     @InjectMocks
     private ProgrammerImportService programmerImportService;
 
@@ -42,19 +38,15 @@ public class ProgrammerImportServiceTests {
         //WebClient mocking
         WebClient webClient = WebClient.builder().build();
         when(webClientBuilder.build()).thenReturn(webClient);
-
         WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock = Mockito.mock(WebClient.RequestBodyUriSpec.class);
         WebClient.RequestHeadersSpec requestHeadersSpecMock = Mockito.mock(WebClient.RequestHeadersSpec.class);
         WebClient.ResponseSpec responseSpecMock = Mockito.mock(WebClient.ResponseSpec.class);
-
         when(webClient.get()).thenReturn(requestHeadersUriSpecMock);
         when(requestHeadersUriSpecMock.uri("test_url")).thenReturn(requestHeadersSpecMock);
         when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
         when(responseSpecMock.bodyToFlux(GithubRepository.class)).thenReturn(Flux.fromIterable(mockResponse));
-
         //calling tested method
         Programmer programmer = programmerImportService.getProgrammers();
-        Assertions.assertEquals(null, programmer.getRepoName());
-
+        Assertions.assertNull(programmer.getRepoName());
     }
 }

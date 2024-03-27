@@ -9,11 +9,11 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @Getter
 public class Config {
-
     @Value("${github.api.url}")
     private String githubApiUrl;
     @Value("${github.login}")
     private String login;
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();

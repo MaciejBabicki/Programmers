@@ -13,20 +13,18 @@ import java.util.List;
 
 @Service
 public class GithubImportService {
-
     private final RestTemplate restTemplate;
-
     @Value("${github.api.url}")
     private String githubApiUrl;
     @Value("${github.login}")
     private String login;
 
-    public GithubImportService(RestTemplate restTemplate)  {
+    public GithubImportService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
+
     public List<GithubRepository> getGithubRepositories() {
         String url = githubApiUrl + "/users/" + login + "/repos";
-
         ResponseEntity<GithubRepository[]> responseEntity = restTemplate.getForEntity(url, GithubRepository[].class);
         if (responseEntity.getBody() == null) {
             throw new ResourceNotFoundException();

@@ -15,33 +15,31 @@ import java.util.List;
 @Service
 @Slf4j
 public class ProgrammerImportService {
-
     private final ProgrammerRepo programmerRepo;
     private String url;
     private List<GithubRepository> githubResponse;
 
     public Programmer getProgrammers() {
         WebClient.Builder builder = prepareWebClientBuilder();
-        List<GithubRepository> githubRepositories = fetchGithubRepositories(builder);
         String repositoryName = extractRepositoryName(githubResponse);
         log.info("Name: " + repositoryName);
-        return createProgrammer(repositoryName);
+        return createProgrammer();
     }
 
-    private Programmer createProgrammer(String repositoryName) {
+    private Programmer createProgrammer() {
         Programmer programmer = new Programmer();
         return programmerRepo.save(programmer);
     }
 
-    private String extractRepositoryName(List<GithubRepository> githubResponse){
-        if (githubResponse == null){
+    private String extractRepositoryName(List<GithubRepository> githubResponse) {
+        if (githubResponse == null) {
             throw new EmptyRepositoryException();
         }
         return githubResponse.get(2).getName();
     }
 
     private List<GithubRepository> fetchGithubRepositories(WebClient.Builder builder) {
-        url = "${github.api.url}" +"/users/" + "${github.login}" + "/repos";
+        url = "${github.api.url}" + "/users/" + "${github.login}" + "/repos";
         githubResponse = builder.build().get()
                 .uri(url)
                 .retrieve()
