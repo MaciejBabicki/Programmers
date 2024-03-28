@@ -134,7 +134,7 @@ public class ProgrammerServiceTests {
     }
 
     @Test
-    public void test_UpdateProgrammer_Programmer_Not_Found() {
+    public void test_UpdateProgrammer_ProgrammerNotFound() {
         //given
         when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
         //when & then
@@ -156,7 +156,7 @@ public class ProgrammerServiceTests {
     }
 
     @Test
-    public void test_DeleteProgrammer_Programmer_Not_Found() {
+    public void test_DeleteProgrammer_ProgrammerNotFound() {
         //given
         when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
         //when & then
