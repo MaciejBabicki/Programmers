@@ -141,8 +141,28 @@ public class ProgrammerServiceTests {
         assertThrows(ResourceNotFoundException.class, () -> programmerService.updateProgrammer(nonExistingProgrammerId));
         verify(programmerRepo, times(1)).findById(nonExistingProgrammerId);
     }
-    @Test
-    public void test_DeleteProgrammer_ProgrammerDeleted(){
 
+    @Test
+    public void test_DeleteProgrammer_ProgrammerDeleted() {
+        //given
+        Programmer programmerToDelete = new Programmer();
+        programmerToDelete.setId(1L);
+        when(programmerRepo.findById(existingProgrammerId)).thenReturn(Optional.of(programmerToDelete));
+        //when
+        programmerService.deleteProgrammer(programmerToDelete.getId());
+        //then
+        verify(programmerRepo, times(1)).findById(existingProgrammerId);
+        verify(programmerRepo, times(1)).deleteById(existingProgrammerId);
+    }
+
+    @Test
+    public void test_DeleteProgrammer_Programmer_Not_Found() {
+        //given
+        when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
+        //when & then
+        assertThrows(ResourceNotFoundException.class, () -> {
+            programmerService.deleteProgrammer(nonExistingProgrammerId);
+            verify(programmerRepo, times(1)).findById(nonExistingProgrammerId);
+        });
     }
 }
