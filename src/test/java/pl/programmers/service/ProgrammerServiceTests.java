@@ -8,13 +8,13 @@ import pl.programmers.repository.ProgrammerRepo;
 import pl.programmers.service.importservice.ProgrammerImportService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ProgrammerServiceTests {
     private final ProgrammerRepo programmerRepo = mock(ProgrammerRepo.class);
@@ -36,6 +36,9 @@ public class ProgrammerServiceTests {
         assertNotNull(dto);
         assertEquals(programmer.getId(), dto.getId());
         assertEquals(programmer.getFirstName(), dto.getFirstName());
+        assertEquals(programmer.getLastName(), dto.getLastName());
+        assertEquals(programmer.getRepoName(), dto.getRepoName());
+        verify(programmerRepo, times(1)).save(programmer);
     }
 
     @Test
@@ -46,6 +49,7 @@ public class ProgrammerServiceTests {
         ProgrammerDto dto = programmerService.createProgrammer();
         //then
         assertNull(dto);
+        verify(programmerRepo, times(0)).save(programmer);
     }
 
     @Test
@@ -59,15 +63,23 @@ public class ProgrammerServiceTests {
     @Test
     public void test_GetProgrammers_CompleteList() {
         //given
-        List<Programmer> programmers = new ArrayList<>();
-        List<ProgrammerDto> programmerDtos = new ArrayList<>();
-        programmerDtos.add(programmerDto);
-        //when
+        List<Programmer> programmers = Arrays.asList(
+                new Programmer(),
+                new Programmer()
+        );
         when(programmerRepo.findAll()).thenReturn(programmers);
+        //when
         List<ProgrammerDto> result = programmerService.getProgrammers();
         //then
         assertNotNull(result);
-        assertEquals(1, result.size());
+        assertEquals(programmers.size(), result.size());
+        for (int i = 0; i < programmers.size(); i++) {
+            ProgrammerDto dto = result.get(i);
+            Programmer programmer1 = programmers.get(i);
+            assertEquals(programmer1.getId(), dto.getId());
+            assertEquals(programmer1.getFirstName(), dto.getLastName());
+            verify(programmerRepo, times(1)).findAll();
+        }
     }
 
     @Test
@@ -79,18 +91,19 @@ public class ProgrammerServiceTests {
         //then
         assertNotNull(result);
         assertTrue(result.isEmpty());
+        verify(programmerRepo, times(1)).findAll();
     }
 
     @Test
     public void test_GetProgrammerById_ProgrammerFound() {
         //given
-        programmerDto.setId(1L);
         programmer.setId(1L);
         when(programmerRepo.findById(programmerDto.getId())).thenReturn(Optional.of(programmer));
         //when
         ProgrammerDto result = programmerService.getProgrammerById(existingProgrammerId);
         //then
         assertEquals(programmerDto.getId(), result.getId());
+        verify(programmerRepo, times(1)).findById(existingProgrammerId);
     }
 
     @Test
@@ -102,6 +115,34 @@ public class ProgrammerServiceTests {
         //when & then
         assertThrows(ResourceNotFoundException.class, () -> {
             programmerService.getProgrammerById(nonExistingProgrammerId);
+            verify(programmerRepo, times(1)).findById(nonExistingProgrammerId);
         });
+    }
+
+    @Test
+    public void test_UpdateProgrammer_ProgrammerUpdated() {
+        //given
+        programmer.setId(1L);
+        programmer.setFirstName("Maciej");
+        when(programmerRepo.findById(programmer.getId())).thenReturn(Optional.of(programmer));
+        //when
+        ProgrammerDto result = programmerService.updateProgrammer(programmer.getId());
+        //then
+        assertNotNull(result);
+        assertEquals("Maciej", result.getFirstName());
+        verify(programmerRepo, times(1)).findById(programmer.getId());
+    }
+
+    @Test
+    public void test_UpdateProgrammer_Programmer_Not_Found() {
+        //given
+        when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
+        //when & then
+        assertThrows(ResourceNotFoundException.class, () -> programmerService.updateProgrammer(nonExistingProgrammerId));
+        verify(programmerRepo, times(1)).findById(nonExistingProgrammerId);
+    }
+    @Test
+    public void test_DeleteProgrammer_ProgrammerDeleted(){
+
     }
 }
