@@ -1,7 +1,7 @@
 package pl.programmers.service.importservice;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import pl.programmers.entity.GithubRepository;
@@ -11,13 +11,20 @@ import pl.programmers.repository.ProgrammerRepo;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
 @Slf4j
 public class ProgrammerImportService {
     private final ProgrammerRepo programmerRepo;
+    private final String githubApiUrl;
+    private final String login;
     private String url;
     private List<GithubRepository> githubResponse;
+
+    public ProgrammerImportService(ProgrammerRepo programmerRepo, @Value("${github.api.url}") String githubApiUrl, @Value("${github.login}") String login) {
+        this.programmerRepo = programmerRepo;
+        this.githubApiUrl = githubApiUrl;
+        this.login = login;
+    }
 
     public Programmer getProgrammers() {
         WebClient.Builder builder = prepareWebClientBuilder();
@@ -38,8 +45,8 @@ public class ProgrammerImportService {
         return githubResponse.get(2).getName();
     }
 
-    private List<GithubRepository> fetchGithubRepositories(WebClient.Builder builder) {
-        url = "${github.api.url}" + "/users/" + "${github.login}" + "/repos";
+    public List<GithubRepository> fetchGithubRepositories(WebClient.Builder builder) {
+        url = githubApiUrl + "/users/" + login + "/repos";
         githubResponse = builder.build().get()
                 .uri(url)
                 .retrieve()

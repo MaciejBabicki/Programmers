@@ -14,13 +14,13 @@ import java.util.List;
 @Service
 public class GithubImportService {
     private final RestTemplate restTemplate;
-    @Value("${github.api.url}")
-    private String githubApiUrl;
-    @Value("${github.login}")
-    private String login;
+    private final String githubApiUrl;
+    private final String login;
 
-    public GithubImportService(RestTemplate restTemplate) {
+    public GithubImportService(RestTemplate restTemplate, @Value("${github.api.url}")String githubApiUrl, @Value("${github.login}")String login) {
         this.restTemplate = restTemplate;
+        this.githubApiUrl = githubApiUrl;
+        this.login = login;
     }
 
     public List<GithubRepository> getGithubRepositories() {
