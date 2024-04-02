@@ -15,10 +15,10 @@ public class ProgrammerMapperTests {
         ProgrammerDto result = ProgrammerMapper.mapToProgrammerDto(programmer);
         //then
         assertNotNull(result);
-        assertEquals(programmer.getId(), result.getId());
-        assertEquals(programmer.getFirstName(), result.getFirstName());
-        assertEquals(programmer.getLastName(), result.getLastName());
-        assertEquals(programmer.getRepoName(), result.getRepoName());
+        assertEquals(programmer.getId(), result.id());
+        assertEquals(programmer.getFirstName(), result.firstName());
+        assertEquals(programmer.getLastName(), result.lastName());
+        assertEquals(programmer.getRepoName(), result.repoName());
     }
 
     @Test

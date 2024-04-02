@@ -1,4 +1,4 @@
-package pl.programmers.service.importservice;
+package pl.programmers.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @Getter
-public class Config {
+public class RestTemplateConfig {
     @Value("${github.api.url}")
     private String githubApiUrl;
     @Value("${github.login}")

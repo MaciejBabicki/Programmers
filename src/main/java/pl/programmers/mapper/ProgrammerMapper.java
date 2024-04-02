@@ -11,7 +11,7 @@ public class ProgrammerMapper {
         return new ProgrammerDto(
                 programmer.getId(),
                 programmer.getFirstName(),
-                programmer.getFirstName(),
+                programmer.getLastName(),
                 programmer.getRepoName()
         );
     }

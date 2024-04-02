@@ -34,17 +34,17 @@ public class ProgrammerServiceTests {
         ProgrammerDto dto = programmerService.createProgrammer();
         //then
         assertNotNull(dto);
-        assertEquals(programmer.getId(), dto.getId());
-        assertEquals(programmer.getFirstName(), dto.getFirstName());
-        assertEquals(programmer.getLastName(), dto.getLastName());
-        assertEquals(programmer.getRepoName(), dto.getRepoName());
+        assertEquals(programmer.getId(), dto.id());
+        assertEquals(programmer.getFirstName(), dto.firstName());
+        assertEquals(programmer.getLastName(), dto.lastName());
+        assertEquals(programmer.getRepoName(), dto.repoName());
         verify(programmerRepo, times(1)).save(programmer);
     }
 
     @Test
     public void test_CreateProgrammer_NullReturned() {
         //given
-        when(programmerService.createProgrammer()).thenReturn(null);
+        when(programmerRepo.save(programmer)).thenReturn(null);
         //when
         ProgrammerDto dto = programmerService.createProgrammer();
         //then
@@ -76,8 +76,8 @@ public class ProgrammerServiceTests {
         for (int i = 0; i < programmers.size(); i++) {
             ProgrammerDto dto = result.get(i);
             Programmer programmer1 = programmers.get(i);
-            assertEquals(programmer1.getId(), dto.getId());
-            assertEquals(programmer1.getFirstName(), dto.getLastName());
+            assertEquals(programmer1.getId(), dto.id());
+            assertEquals(programmer1.getFirstName(), dto.lastName());
             verify(programmerRepo, times(1)).findAll();
         }
     }
@@ -98,18 +98,17 @@ public class ProgrammerServiceTests {
     public void test_GetProgrammerById_ProgrammerFound() {
         //given
         programmer.setId(1L);
-        when(programmerRepo.findById(programmerDto.getId())).thenReturn(Optional.of(programmer));
+        when(programmerRepo.findById(programmerDto.id())).thenReturn(Optional.of(programmer));
         //when
         ProgrammerDto result = programmerService.getProgrammerById(existingProgrammerId);
         //then
-        assertEquals(programmerDto.getId(), result.getId());
+        assertEquals(programmerDto.id(), result.id());
         verify(programmerRepo, times(1)).findById(existingProgrammerId);
     }
 
     @Test
     public void test_GetProgrammerById_ProgrammerNotFound() {
         //given
-        programmerDto.setId(1L);
         programmer.setId(1L);
         when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
         //when & then
@@ -129,7 +128,7 @@ public class ProgrammerServiceTests {
         ProgrammerDto result = programmerService.updateProgrammer(programmer.getId());
         //then
         assertNotNull(result);
-        assertEquals("Maciej", result.getFirstName());
+        assertEquals("Maciej", result.firstName());
         verify(programmerRepo, times(1)).findById(programmer.getId());
     }
 
