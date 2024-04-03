@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.programmers.exception.ResourceNotFoundException;
 import pl.programmers.pojo.ProgrammerDto;
-import pl.programmers.service.ProgrammerService;
+import pl.programmers.service.ProgrammerServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,14 +34,14 @@ public class ProgrammerControllerIntegrationTest {
     @Autowired
     ObjectMapper objectMapper;
     @MockBean
-    ProgrammerService programmerService;
+    ProgrammerServiceImpl programmerServiceImpl;
 
     @Test
     public void createProgrammer_shouldReturnCreatedProgrammer() throws Exception {
         //given
         ProgrammerDto programmerDto = new ProgrammerDto(1L, "Maciej", "Babicki", "RepoName1");
         //when
-        when(programmerService.createProgrammer()).thenReturn(programmerDto);
+        when(programmerServiceImpl.createProgrammer()).thenReturn(programmerDto);
         //then
         mockMvc.perform(post("/programmers")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -72,7 +72,7 @@ public class ProgrammerControllerIntegrationTest {
                 new ProgrammerDto(2L, "Maciej", "Babicki", "RepoName2")
         );
         //when
-        when(programmerService.getProgrammers()).thenReturn(programmers);
+        when(programmerServiceImpl.getProgrammers()).thenReturn(programmers);
         //then
         mockMvc.perform(get("/programmers")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -94,7 +94,7 @@ public class ProgrammerControllerIntegrationTest {
         Long programmerId = 1L;
         ProgrammerDto programmerDto = new ProgrammerDto(programmerId, "Maciej", "Babicki", "RepoName1");
         //when
-        when(programmerService.getProgrammerById(programmerId)).thenReturn(programmerDto);
+        when(programmerServiceImpl.getProgrammerById(programmerId)).thenReturn(programmerDto);
         //then
         mockMvc.perform(get("/programmers/{id}", programmerId)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -109,7 +109,7 @@ public class ProgrammerControllerIntegrationTest {
         //given
         Long nonExistingId = 15L;
         //when
-        when(programmerService.getProgrammerById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
+        when(programmerServiceImpl.getProgrammerById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
         //then
         mockMvc.perform(get("/programmers/{15}", nonExistingId)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -122,7 +122,7 @@ public class ProgrammerControllerIntegrationTest {
         Long updatedProgrammerId = 3L;
         ProgrammerDto updatedProgrammerDto = new ProgrammerDto(updatedProgrammerId, "Maciej", "Babicki", "RepoName1");
         //when
-        when(programmerService.updateProgrammer(updatedProgrammerId)).thenReturn(updatedProgrammerDto);
+        when(programmerServiceImpl.updateProgrammer(updatedProgrammerId)).thenReturn(updatedProgrammerDto);
         //then
         mockMvc.perform(put("/programmers/{id}", updatedProgrammerId)
                         .contentType(MediaType.APPLICATION_JSON))

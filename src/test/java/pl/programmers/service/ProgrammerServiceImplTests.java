@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class ProgrammerServiceTests {
+public class ProgrammerServiceImplTests {
     private final ProgrammerRepo programmerRepo = mock(ProgrammerRepo.class);
     private final ProgrammerImportService programmerImportService = mock(ProgrammerImportService.class);
-    private final ProgrammerService programmerService = new ProgrammerService(programmerRepo, programmerImportService);
+    private final ProgrammerServiceImpl programmerServiceImpl = new ProgrammerServiceImpl(programmerRepo, programmerImportService);
     Programmer programmer = new Programmer();
     ProgrammerDto programmerDto = new ProgrammerDto(1L, "a", "b", "c");
     Long existingProgrammerId = 1L;
@@ -31,7 +31,7 @@ public class ProgrammerServiceTests {
         when(programmerRepo.save(any(Programmer.class))).thenReturn(programmer);
         when(programmerImportService.getProgrammers()).thenReturn(programmer);
         //when
-        ProgrammerDto dto = programmerService.createProgrammer();
+        ProgrammerDto dto = programmerServiceImpl.createProgrammer();
         //then
         assertNotNull(dto);
         assertEquals(programmer.getId(), dto.id());
@@ -46,7 +46,7 @@ public class ProgrammerServiceTests {
         //given
         when(programmerRepo.save(programmer)).thenReturn(null);
         //when
-        ProgrammerDto dto = programmerService.createProgrammer();
+        ProgrammerDto dto = programmerServiceImpl.createProgrammer();
         //then
         assertNull(dto);
         verify(programmerRepo, times(0)).save(programmer);
@@ -55,9 +55,9 @@ public class ProgrammerServiceTests {
     @Test
     public void test_CreateProgrammer_ExceptionThrown() {
         //given
-        when(programmerService.createProgrammer()).thenReturn(programmerDto);
+        when(programmerServiceImpl.createProgrammer()).thenReturn(programmerDto);
         //when & then
-        assertThrows(ClassCastException.class, programmerService::createProgrammer);
+        assertThrows(ClassCastException.class, programmerServiceImpl::createProgrammer);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class ProgrammerServiceTests {
         );
         when(programmerRepo.findAll()).thenReturn(programmers);
         //when
-        List<ProgrammerDto> result = programmerService.getProgrammers();
+        List<ProgrammerDto> result = programmerServiceImpl.getProgrammers();
         //then
         assertNotNull(result);
         assertEquals(programmers.size(), result.size());
@@ -87,7 +87,7 @@ public class ProgrammerServiceTests {
         //given
         when(programmerRepo.findAll()).thenReturn(new ArrayList<>());
         //when
-        List<ProgrammerDto> result = programmerService.getProgrammers();
+        List<ProgrammerDto> result = programmerServiceImpl.getProgrammers();
         //then
         assertNotNull(result);
         assertTrue(result.isEmpty());
@@ -100,7 +100,7 @@ public class ProgrammerServiceTests {
         programmer.setId(1L);
         when(programmerRepo.findById(programmerDto.id())).thenReturn(Optional.of(programmer));
         //when
-        ProgrammerDto result = programmerService.getProgrammerById(existingProgrammerId);
+        ProgrammerDto result = programmerServiceImpl.getProgrammerById(existingProgrammerId);
         //then
         assertEquals(programmerDto.id(), result.id());
         verify(programmerRepo, times(1)).findById(existingProgrammerId);
@@ -113,7 +113,7 @@ public class ProgrammerServiceTests {
         when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
         //when & then
         assertThrows(ResourceNotFoundException.class, () -> {
-            programmerService.getProgrammerById(nonExistingProgrammerId);
+            programmerServiceImpl.getProgrammerById(nonExistingProgrammerId);
             verify(programmerRepo, times(1)).findById(nonExistingProgrammerId);
         });
     }
@@ -125,7 +125,7 @@ public class ProgrammerServiceTests {
         programmer.setFirstName("Maciej");
         when(programmerRepo.findById(programmer.getId())).thenReturn(Optional.of(programmer));
         //when
-        ProgrammerDto result = programmerService.updateProgrammer(programmer.getId());
+        ProgrammerDto result = programmerServiceImpl.updateProgrammer(programmer.getId());
         //then
         assertNotNull(result);
         assertEquals("Maciej", result.firstName());
@@ -137,7 +137,7 @@ public class ProgrammerServiceTests {
         //given
         when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
         //when & then
-        assertThrows(ResourceNotFoundException.class, () -> programmerService.updateProgrammer(nonExistingProgrammerId));
+        assertThrows(ResourceNotFoundException.class, () -> programmerServiceImpl.updateProgrammer(nonExistingProgrammerId));
         verify(programmerRepo, times(1)).findById(nonExistingProgrammerId);
     }
 
@@ -148,7 +148,7 @@ public class ProgrammerServiceTests {
         programmerToDelete.setId(1L);
         when(programmerRepo.findById(existingProgrammerId)).thenReturn(Optional.of(programmerToDelete));
         //when
-        programmerService.deleteProgrammer(programmerToDelete.getId());
+        programmerServiceImpl.deleteProgrammer(programmerToDelete.getId());
         //then
         verify(programmerRepo, times(1)).findById(existingProgrammerId);
         verify(programmerRepo, times(1)).deleteById(existingProgrammerId);
@@ -160,7 +160,7 @@ public class ProgrammerServiceTests {
         when(programmerRepo.findById(nonExistingProgrammerId)).thenThrow(ResourceNotFoundException.class);
         //when & then
         assertThrows(ResourceNotFoundException.class, () -> {
-            programmerService.deleteProgrammer(nonExistingProgrammerId);
+            programmerServiceImpl.deleteProgrammer(nonExistingProgrammerId);
             verify(programmerRepo, times(1)).findById(nonExistingProgrammerId);
         });
     }
