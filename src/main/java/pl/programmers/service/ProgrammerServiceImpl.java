@@ -7,6 +7,7 @@ import pl.programmers.exception.ResourceNotFoundException;
 import pl.programmers.mapper.ProgrammerMapper;
 import pl.programmers.pojo.ProgrammerDto;
 import pl.programmers.repository.ProgrammerRepo;
+import pl.programmers.service.importservice.ProgrammerImportService;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProgrammerServiceImpl implements ProgrammerService {
     private final ProgrammerRepo programmerRepo;
+    private final ProgrammerImportService service;
 
     @Override
     public ProgrammerDto createProgrammer() {
@@ -21,19 +23,16 @@ public class ProgrammerServiceImpl implements ProgrammerService {
         programmerRepo.save(programmer);
         return ProgrammerMapper.mapToProgrammerDto(programmer);
     }
-
     @Override
     public List<ProgrammerDto> getProgrammers() {
         List<Programmer> programmers = programmerRepo.findAll();
         return programmers.stream().map(ProgrammerMapper::mapToProgrammerDto).toList();
     }
-
     @Override
     public ProgrammerDto getProgrammerById(Long id) {
         Programmer programmer = programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
         return ProgrammerMapper.mapToProgrammerDto(programmer);
     }
-
     @Override
     public ProgrammerDto updateProgrammer(Long id) {
         Programmer programmer = programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
@@ -42,7 +41,6 @@ public class ProgrammerServiceImpl implements ProgrammerService {
         programmer.setRepoName(programmer.getRepoName());
         return ProgrammerMapper.mapToProgrammerDto(programmer);
     }
-
     @Override
     public void deleteProgrammer(Long id) {
         programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
