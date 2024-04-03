@@ -2,7 +2,6 @@ package pl.programmers.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,13 +11,16 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import pl.programmers.entity.Programmer;
+import pl.programmers.exception.ResourceNotFoundException;
 import pl.programmers.pojo.ProgrammerDto;
 import pl.programmers.service.ProgrammerService;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,22 +38,6 @@ public class ProgrammerControllerIntegrationTest {
     ProgrammerService programmerService;
 
     @Test
-    public void shouldReturnProgrammers() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/programmers"))
-                .andExpect(status().is(200)).andReturn();
-        Programmer[] programmers = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Programmer[].class);
-        Assertions.assertNull(programmers[0].getFirstName());
-    }
-
-    @Test
-    public void shouldReturn404WhenGetProgrammerById() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/programmers/15"))
-                .andExpect(status().is(404)).andReturn();
-        String actual = mvcResult.getResolvedException().getMessage();
-        Assertions.assertEquals("Programmer with this id doesn't exist", actual);
-    }
-
-    @Test
     public void createProgrammer_shouldReturnCreatedProgrammer() throws Exception {
         //given
         ProgrammerDto programmerDto = new ProgrammerDto(1L, "Maciej", "Babicki", "RepoName1");
@@ -66,5 +52,52 @@ public class ProgrammerControllerIntegrationTest {
                 .andExpect(jsonPath("$.firstName").value(programmerDto.firstName()))
                 .andExpect(jsonPath("$.lastName").value(programmerDto.lastName()))
                 .andExpect(jsonPath("$.repoName").value(programmerDto.repoName()));
+    }
+
+    @Test
+    public void createProgrammer_withInvalidRequestBody_shouldReturnBadRequest() throws Exception {
+        //given
+        String invalidRequestBody = "{ \"id\": \"invalid\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"repoName\": \"johndoe\" }";
+        //then
+        mockMvc.perform(post("/programmers")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(invalidRequestBody))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void getProgrammers_shouldReturnListOfProgrammers() throws Exception {
+        //given
+        List<ProgrammerDto> programmers = Arrays.asList(
+                new ProgrammerDto(1L, "Maciej", "Babicki", "RepoName1"),
+                new ProgrammerDto(2L, "Maciej", "Babicki", "RepoName2")
+        );
+        //when
+        when(programmerService.getProgrammers()).thenReturn(programmers);
+        //then
+        mockMvc.perform(get("/programmers")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].id").value(programmers.get(0).id()))
+                .andExpect(jsonPath("$[0].firstName").value(programmers.get(0).firstName()))
+                .andExpect(jsonPath("$[0].lastName").value(programmers.get(0).lastName()))
+                .andExpect(jsonPath("$[0].repoName").value(programmers.get(0).repoName()))
+                .andExpect(jsonPath("$[1].id").value(programmers.get(1).id()))
+                .andExpect(jsonPath("$[1].firstName").value(programmers.get(1).firstName()))
+                .andExpect(jsonPath("$[1].lastName").value(programmers.get(1).lastName()))
+                .andExpect(jsonPath("$[1].repoName").value(programmers.get(1).repoName()));
+    }
+
+    @Test
+    public void getProgrammerById_withNonExistingId_shouldReturnNotFound() throws Exception {
+        //given
+        Long nonExistingId = 15L;
+        //when
+        when(programmerService.getProgrammerById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
+        //then
+        mockMvc.perform(get("/programmers/{15}", nonExistingId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }
