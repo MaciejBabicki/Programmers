@@ -20,8 +20,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -90,6 +89,22 @@ public class ProgrammerControllerIntegrationTest {
     }
 
     @Test
+    public void getProgrammerById_shouldReturnProgrammerById() throws Exception {
+        //given
+        Long programmerId = 1L;
+        ProgrammerDto programmerDto = new ProgrammerDto(programmerId, "Maciej", "Babicki", "RepoName1");
+        //when
+        when(programmerService.getProgrammerById(programmerId)).thenReturn(programmerDto);
+        //then
+        mockMvc.perform(get("/programmers/{id}", programmerId)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(programmerDto.id()))
+                .andExpect(jsonPath("$.firstName").value(programmerDto.firstName()))
+                .andExpect(jsonPath("$.lastName").value(programmerDto.lastName()))
+                .andExpect(jsonPath("$.repoName").value(programmerDto.repoName()));
+    }
+    @Test
     public void getProgrammerById_withNonExistingId_shouldReturnNotFound() throws Exception {
         //given
         Long nonExistingId = 15L;
@@ -99,5 +114,22 @@ public class ProgrammerControllerIntegrationTest {
         mockMvc.perform(get("/programmers/{15}", nonExistingId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void updateProgrammerById_shouldReturnUpdatedProgrammer() throws Exception {
+        //given
+        Long updatedProgrammerId = 3L;
+        ProgrammerDto updatedProgrammerDto = new ProgrammerDto(updatedProgrammerId, "Maciej", "Babicki", "RepoName1");
+        //when
+        when(programmerService.updateProgrammer(updatedProgrammerId)).thenReturn(updatedProgrammerDto);
+        //then
+        mockMvc.perform(put("/programmers/{id}", updatedProgrammerId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(updatedProgrammerDto.id()))
+                .andExpect(jsonPath("$.firstName").value(updatedProgrammerDto.firstName()))
+                .andExpect(jsonPath("$.lastName").value(updatedProgrammerDto.lastName()))
+                .andExpect(jsonPath("$.repoName").value(updatedProgrammerDto.repoName()));
     }
 }

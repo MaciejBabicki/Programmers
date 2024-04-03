@@ -18,7 +18,7 @@ public class ProgrammerService {
     private final ProgrammerImportService service;
 
     public ProgrammerDto createProgrammer() {
-        Programmer programmer = service.getProgrammers();
+        Programmer programmer = new Programmer();
         programmerRepo.save(programmer);
         return ProgrammerMapper.mapToProgrammerDto(programmer);
     }
