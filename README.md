@@ -1,4 +1,3 @@
-https://maciejbabicki.github.io/Programmers/
 ## General Info
 Web application where administrator can perform CRUD functionalities of real programmers and users can search for. Application is connected to **Github API** to import the informations about repositories. The task is to give for the user possibility to find a specialist with concrete specialization and see repositories. 
 I have designed this engine and thinking about two implementations:   
