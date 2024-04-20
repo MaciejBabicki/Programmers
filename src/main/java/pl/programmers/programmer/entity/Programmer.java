@@ -1,13 +1,13 @@
 package pl.programmers.programmer.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.programmers.user.User;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,4 +21,6 @@ public class Programmer {
     private String firstName;
     private String lastName;
     private String repoName;
+    @ManyToMany
+    private List<User> ownerUsers;
 }
