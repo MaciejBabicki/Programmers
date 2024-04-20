@@ -10,8 +10,9 @@ import pl.programmers.programmer.entity.Programmer;
         imports = Programmer.class)
 public interface UserMapper {
     UserDto mapToDto(User user);
-//    List<UserDto> mapToDtos(List<User> users);
+
+    //    List<UserDto> mapToDtos(List<User> users);
     @Mapping(target = "password", ignore = true)
     @Mapping(target = "programmers", expression = "java(newArrayList<Programmer>())")
-    User mapToEntity (RegisteredUserDto registeredUserDto);
+    User mapToEntity(RegisteredUserDto registeredUserDto);
 }

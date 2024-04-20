@@ -10,7 +10,6 @@ public class UserMapperImpl implements UserMapper {
         );
     }
 
-
     @Override
     public User mapToEntity(RegisteredUserDto registeredUserDto) {
         return new User(

@@ -19,7 +19,7 @@ public class User {
     private String email;
     private String password;
     @ManyToMany(mappedBy = "ownerUsers")
-    private List<Programmer>programmers;
+    private List<Programmer> programmers;
 
     public User(Long id, String s, String s1) {
     }

@@ -15,7 +15,6 @@ import java.io.IOException;
 import static org.springframework.security.authentication.UsernamePasswordAuthenticationToken.unauthenticated;
 
 public class JsonObjectAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-
     private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher("/login", "POST");
     private final ObjectMapper objectMapper;
 
@@ -28,11 +27,11 @@ public class JsonObjectAuthenticationFilter extends AbstractAuthenticationProces
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         String username;
         String password;
-        try{
-            LoginDto loginDto = objectMapper.readValue(request.getReader(),LoginDto.class);
+        try {
+            LoginDto loginDto = objectMapper.readValue(request.getReader(), LoginDto.class);
             username = loginDto.email();
             password = loginDto.password();
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
         username = (username != null) ? username.trim() : "";
