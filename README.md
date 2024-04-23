@@ -30,12 +30,9 @@ I have designed this engine and thinking about two implementations:
 **Clone the Repository**
 
 Clone the repository or download the source code:
-
-git clone https://github.com/MaciejBabicki/Programmers.git
-
-shell
-Copy code
-
+```
+git clone <https://github.com/MaciejBabicki/Programmers.git>
+```
 **Configure Your Environment**
 
 Ensure you have Java installed, version 8 or newer.
@@ -43,9 +40,9 @@ Ensure you have Java installed, version 8 or newer.
 **Download External Libraries**
 
 This project uses external libraries such as Spring Boot and Hibernate. Ensure that you have Maven installed, then navigate to the project directory and run:
-
+```
 mvn clean install
-
+```
 csharp
 Copy code
 
@@ -58,9 +55,9 @@ The application uses MySQL database. You need to set up a MySQL server and creat
 **Run the Application**
 
 Once the database is set up and the project is built, you can run the application using the following command:
-
+```
 mvn spring-boot:run
-
+```
 csharp
 Copy code
 
@@ -73,6 +70,6 @@ Once the application is running, you can access it at http://localhost:8080 in y
 **Unit Tests**
 
 The project includes unit tests. You can run them using Maven:
-
+```
 mvn test
-
+```
