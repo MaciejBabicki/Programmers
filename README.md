@@ -27,7 +27,7 @@ I have designed this engine and thinking about two implementations:
 
 
 ## Setup
-** Clone the Repository
+**Clone the Repository
 
 Clone the repository or download the source code:
 
@@ -36,11 +36,11 @@ git clone https://github.com/MaciejBabicki/Programmers.git
 shell
 Copy code
 
-** Configure Your Environment
+**Configure Your Environment
 
 Ensure you have Java installed, version 8 or newer.
 
-### Download External Libraries
+**Download External Libraries
 
 This project uses external libraries such as Spring Boot and Hibernate. Ensure that you have Maven installed, then navigate to the project directory and run:
 
@@ -51,11 +51,11 @@ Copy code
 
 This command will download all required dependencies and build the project.
 
-** Set Up the Database
+**Set Up the Database
 
 The application uses MySQL database. You need to set up a MySQL server and create a database for the application. Update the `application.properties` file in `src/main/resources` directory with your database configuration.
 
-** Run the Application
+**Run the Application
 
 Once the database is set up and the project is built, you can run the application using the following command:
 
@@ -66,11 +66,11 @@ Copy code
 
 This will start the Spring Boot application.
 
-** Access the Application
+**Access the Application
 
 Once the application is running, you can access it at http://localhost:8080 in your web browser.
 
-** Unit Tests
+**Unit Tests
 
 The project includes unit tests. You can run them using Maven:
 
