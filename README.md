@@ -43,9 +43,6 @@ This project uses external libraries such as Spring Boot and Hibernate. Ensure t
 ```
 mvn clean install
 ```
-csharp
-Copy code
-
 This command will download all required dependencies and build the project.
 
 **Set Up the Database**
@@ -58,9 +55,6 @@ Once the database is set up and the project is built, you can run the applicatio
 ```
 mvn spring-boot:run
 ```
-csharp
-Copy code
-
 This will start the Spring Boot application.
 
 **Access the Application**
