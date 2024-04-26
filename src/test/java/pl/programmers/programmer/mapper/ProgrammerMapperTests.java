@@ -2,7 +2,6 @@ package pl.programmers.programmer.mapper;
 
 import org.junit.Test;
 import pl.programmers.programmer.entity.Programmer;
-import pl.programmers.programmer.mapper.ProgrammerMapper;
 import pl.programmers.programmer.pojo.ProgrammerDto;
 
 import static org.junit.Assert.*;
