@@ -17,7 +17,7 @@ I have designed this engine and thinking about two implementations:
 **Security**: Spring Security
 
 ## Features
-**User CRUD operations:** Programmer basic personal data with specialization Repository name
+**User CRUD operations:** Programmer's personal data with specialization and repository name
 
 **Searching Repositories:** You can find the Github repositories for concrete programmer, filter not fork repositories, see the branches, last commits and more.
 
