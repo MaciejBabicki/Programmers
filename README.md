@@ -1,6 +1,9 @@
 ## General Info
 
-Programmers is a web application designed to assist in managing data about programmers in an IT company. It allows users to add, edit, and delete programmer profiles, as well as browse their details. The application provides a simple user interface and supports authentication and authorization through Spring Security.
+Programmers is a web application designed to assist in managing data about programmers. It allows users to add, edit, and delete programmer profiles, as well as browse their details. The application provides a simple user interface and supports authentication and authorization through Spring Security. 
+I have created this project thinking about two applications:
+1) Application to find the programming-trainer for private lessons
+2) Application to find an employee for a company
 
 ## Key Features:
 
@@ -13,9 +16,6 @@ Programmers is a web application designed to assist in managing data about progr
 - **Browse Data:** Users can browse available programmer profiles, checking their skills, experience, and other information.
 
 - **Authentication and Authorization:** Access to the application is secured using Spring Security, requiring users to authenticate through login.
-   
-1) To find the programming-trainer for private lessons
-2) To find an employee
 
 ## Technologies:
 
