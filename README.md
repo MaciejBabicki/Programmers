@@ -1,6 +1,19 @@
 ## General Info
-Web application where administrator can perform CRUD functionalities of real programmers and users can search for. Application is connected to **Github API** to import the informations about repositories. The task is to give for the user possibility to find a specialist with concrete specialization and see repositories. 
-I have designed this engine and thinking about two implementations:   
+
+Programmers is a web application designed to assist in managing data about programmers in an IT company. It allows users to add, edit, and delete programmer profiles, as well as browse their details. The application provides a simple user interface and supports authentication and authorization through Spring Security.
+
+## Key Features:
+
+- **Add Programmer:** Users can add new programmer profiles by providing relevant details such as name, surname, skills, experience, etc.
+
+- **Edit Profiles:** Existing programmer profiles can be edited to update information. Users can modify programmer details, add new skills, update experience, etc.
+
+- **Delete Profiles:** The application enables the removal of unnecessary programmer profiles from the database.
+
+- **Browse Data:** Users can browse available programmer profiles, checking their skills, experience, and other information.
+
+- **Authentication and Authorization:** Access to the application is secured using Spring Security, requiring users to authenticate through login.
+   
 1) To find the programming-trainer for private lessons
 2) To find an employee
 
