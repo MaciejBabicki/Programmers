@@ -38,6 +38,10 @@ I have created this project thinking about two applications:
 
 ![Programmers](https://github.com/MaciejBabicki/Programmers/assets/123827748/c271de49-bc31-4677-a039-b11874ff387e)
 
+## System Requirements:
+
+- Java 8 or higher
+- MySQL (installed locally or available as a remote service)
 
 ## Setup
 **Clone the Repository**
