@@ -29,12 +29,6 @@ I have created this project thinking about two applications:
 
 **Security**: Spring Security
 
-## Features
-**User CRUD operations:** You can create, read, update, delete programmer's personal data with specialization and repository name
-
-**Searching Repositories:** You can find the Github repositories for concrete programmer, filter not fork repositories, see the branches, last commits and more.
-
-**Security:** You have to log in to acces the resources.
 
 ![Programmers](https://github.com/MaciejBabicki/Programmers/assets/123827748/c271de49-bc31-4677-a039-b11874ff387e)
 
