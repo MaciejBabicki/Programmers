@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import pl.programmers.programmer.entity.Programmer;
 import pl.programmers.programmer.exception.ResourceNotFoundException;
 import pl.programmers.programmer.pojo.ProgrammerDto;
 import pl.programmers.programmer.service.ProgrammerServiceImpl;
@@ -35,13 +36,14 @@ public class ProgrammerControllerIntegrationTest {
     ObjectMapper objectMapper;
     @MockBean
     ProgrammerServiceImpl programmerServiceImpl;
+    Programmer programmer = new Programmer();
 
     @Test
     public void createProgrammer_shouldReturnCreatedProgrammer() throws Exception {
         //given
         ProgrammerDto programmerDto = new ProgrammerDto(1L, "Maciej", "Babicki", "RepoName1");
         //when
-        when(programmerServiceImpl.createProgrammer()).thenReturn(programmerDto);
+        when(programmerServiceImpl.createProgrammer(programmer)).thenReturn(programmerDto);
         //then
         mockMvc.perform(post("/programmers")
                         .contentType(MediaType.APPLICATION_JSON)

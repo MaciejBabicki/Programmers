@@ -26,7 +26,7 @@ public class ProgrammerImportService {
         this.login = login;
     }
 
-    public Programmer getProgrammers() {
+    public Programmer getProgrammers(String string) {
         WebClient.Builder builder = prepareWebClientBuilder();
         String repositoryName = extractRepositoryName(githubResponse);
         log.info("Name: " + repositoryName);

@@ -34,6 +34,16 @@ public class GithubImportService {
                 .peek(this::fetchBranches)
                 .toList();
     }
+    public GithubRepository getGithubRepository(String repositoryName) {
+        String url = githubApiUrl + "/repos/" + login + "/" + repositoryName;
+        ResponseEntity<GithubRepository> responseEntity = restTemplate.getForEntity(url, GithubRepository.class);
+        if (responseEntity.getBody() == null) {
+            throw new ResourceNotFoundException();
+        }
+        GithubRepository repository = responseEntity.getBody();
+        fetchBranches(repository);
+        return repository;
+    }
 
     void fetchBranches(GithubRepository githubRepository) {
         String branchesUrl = githubRepository.getUrl() + "/branches";

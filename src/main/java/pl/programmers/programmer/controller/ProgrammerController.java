@@ -1,22 +1,28 @@
 package pl.programmers.programmer.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import pl.programmers.programmer.entity.Programmer;
 import pl.programmers.programmer.pojo.ProgrammerDto;
 import pl.programmers.programmer.service.ProgrammerServiceImpl;
+import pl.programmers.programmer.service.importservice.ProgrammerImportService;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/programmers")
 public class ProgrammerController {
     private final ProgrammerServiceImpl programmerServiceImpl;
+    private final ProgrammerImportService programmerImportService;
 
-    @PostMapping("/add-programmer ")
+    @GetMapping("/data")
+    public Programmer getData(){
+        return programmerImportService.getProgrammers("https://api.github.com/MaciejBabicki");
+    }
+
+    @PostMapping
     public ProgrammerDto createProgrammer(@RequestBody ProgrammerDto programmerDto) {
         Programmer programmerRequest = new Programmer();
         programmerRequest.setId(programmerDto.getId());
@@ -26,25 +32,23 @@ public class ProgrammerController {
         return programmerServiceImpl.createProgrammer(programmerRequest);
     }
 
-    @GetMapping
-    public List<ProgrammerDto> getProgrammers(@RequestParam Integer page, @RequestParam Sort.Direction sort, @RequestParam Integer limit) {
-        int pageNumber = page != null && page >= 0 ? page : 0;
-        Sort.Direction sortDirection = sort != null ? sort : Sort.Direction.ASC;
-        return programmerServiceImpl.getProgrammers();
-    }
-
     @GetMapping("/{id}")
-    public ProgrammerDto getProgrammerById(@PathVariable("id") Long id) {
+    public ProgrammerDto getProgrammerById(@PathVariable("id") long id) {
         return programmerServiceImpl.getProgrammerById(id);
     }
 
     @PutMapping("/{id}")
-    public ProgrammerDto updateProgrammer(@PathVariable("id") Long id) {
-        return programmerServiceImpl.updateProgrammer(id);
+    public ProgrammerDto updateProgrammer(@PathVariable("id") long id, @RequestBody ProgrammerDto updatedProgrammer) {
+        return programmerServiceImpl.updateProgrammer(id, updatedProgrammer);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProgrammer(@PathVariable("id") Long id) {
+    public void deleteProgrammer(@PathVariable("id") long id) {
         programmerServiceImpl.deleteProgrammer(id);
+    }
+
+    @GetMapping
+    public List<ProgrammerDto> getProgrammers() {
+        return programmerServiceImpl.getProgrammers();
     }
 }

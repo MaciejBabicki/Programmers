@@ -9,7 +9,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import pl.programmers.programmer.entity.GithubRepository;
 import pl.programmers.programmer.entity.Programmer;
 import pl.programmers.programmer.repository.ProgrammerRepo;
-import pl.programmers.programmer.service.importservice.ProgrammerImportService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +36,6 @@ public class ProgrammerImportServiceTests {
         mockGithubResponse.add(new GithubRepository());
         when(programmerImportService.fetchGithubRepositories(any())).thenReturn(mockGithubResponse);
         //when
-        Programmer programmer = programmerImportService.getProgrammers();
+        Programmer programmer = programmerImportService.getProgrammers("https://api.github.com/MaciejBabicki");
     }
 }

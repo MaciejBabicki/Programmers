@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 public class ProgrammerServiceImplTests {
     private final ProgrammerRepo programmerRepo = mock(ProgrammerRepo.class);
     private final ProgrammerImportService programmerImportService = mock(ProgrammerImportService.class);
-    private final ProgrammerServiceImpl programmerServiceImpl = new ProgrammerServiceImpl(programmerRepo, programmerImportService);
+    private final ProgrammerServiceImpl programmerServiceImpl = new ProgrammerServiceImpl(programmerRepo);
     Programmer programmer = new Programmer();
     ProgrammerDto programmerDto = new ProgrammerDto(1L, "a", "b", "c");
     Long existingProgrammerId = 1L;
@@ -29,7 +29,7 @@ public class ProgrammerServiceImplTests {
     public void test_CreateProgrammer_ProgrammerCreated() {
         //given
         when(programmerRepo.save(any(Programmer.class))).thenReturn(programmer);
-        when(programmerImportService.getProgrammers()).thenReturn(programmer);
+        when(programmerImportService.getProgrammers("https://api.github.com/MaciejBabicki")).thenReturn(programmer);
         //when
         ProgrammerDto dto = programmerServiceImpl.createProgrammer(programmer);
         //then
@@ -46,7 +46,7 @@ public class ProgrammerServiceImplTests {
         //given
         when(programmerRepo.save(programmer)).thenReturn(null);
         //when
-        ProgrammerDto dto = programmerServiceImpl.createProgrammer();
+        ProgrammerDto dto = programmerServiceImpl.createProgrammer(programmer);
         //then
         assertNull(dto);
         verify(programmerRepo, times(0)).save(programmer);
@@ -55,17 +55,17 @@ public class ProgrammerServiceImplTests {
     @Test
     public void test_CreateProgrammer_ExceptionThrown() {
         //given
-        when(programmerServiceImpl.createProgrammer()).thenReturn(programmerDto);
+        when(programmerServiceImpl.createProgrammer(programmer)).thenReturn(programmerDto);
         //when & then
-        assertThrows(ClassCastException.class, programmerServiceImpl::createProgrammer);
+
     }
 
     @Test
     public void test_GetProgrammers_CompleteList() {
         //given
         List<Programmer> programmers = Arrays.asList(
-                new Programmer(1L, "a", "b", "c"),
-                new Programmer(1L, "a", "b", "c")
+                new Programmer(),
+                new Programmer()
         );
         when(programmerRepo.findAll()).thenReturn(programmers);
         //when

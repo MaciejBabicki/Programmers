@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProgrammerService {
     ProgrammerDto createProgrammer(Programmer programmer);
     List<ProgrammerDto> getProgrammers();
-    ProgrammerDto getProgrammerById(Long id);
-    ProgrammerDto updateProgrammer(Long id);
-    void deleteProgrammer(Long id);
+    ProgrammerDto getProgrammerById(long id);
+
+    void deleteProgrammer(long id);
 }

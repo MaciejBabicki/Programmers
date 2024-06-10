@@ -12,14 +12,12 @@ import pl.programmers.programmer.service.importservice.TechnologiesInRepo;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/repos")
 public class GithubController {
     private final GithubImportService githubImportService;
     private final GithubRepositoryService githubRepositoryService;
     private final TechnologiesInRepo technologiesInRepo;
-    private final GithubRepositoryRepo githubRepositoryRepo;
 
     @PostMapping
     public GithubRepositoryDto createGithubRepository() {
@@ -27,7 +25,7 @@ public class GithubController {
         return githubRepositoryService.createRepository(githubRepositoryRequest);
     }
 
-    @PostMapping("import-save")
+    @PostMapping("/import-save")
     public GithubRepositoryDto saveGithubRepository() {
         String name = "programmers";
         GithubRepository githubRepository = githubImportService.getGithubRepository(name);
@@ -39,12 +37,12 @@ public class GithubController {
         return githubImportService.getGithubRepositories();
     }
 
-    @GetMapping("dbrepositories")
+    @GetMapping("/dbrepositories")
     public List<GithubRepositoryDto> githubRepositoriesFromDB() {
         return githubRepositoryService.getGithubRepositories();
     }
 
-    @GetMapping("one")
+    @GetMapping("/one")
     public GithubRepository getOneRepository() {
         String aa = "programmers";
         return githubImportService.getGithubRepository(aa);

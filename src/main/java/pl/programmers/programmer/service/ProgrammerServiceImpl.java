@@ -7,14 +7,13 @@ import pl.programmers.programmer.exception.ResourceNotFoundException;
 import pl.programmers.programmer.mapper.ProgrammerMapper;
 import pl.programmers.programmer.pojo.ProgrammerDto;
 import pl.programmers.programmer.repository.ProgrammerRepo;
-import pl.programmers.programmer.service.importservice.ProgrammerImportService;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ProgrammerServiceImpl implements ProgrammerService {
-    private final ProgrammerRepo programmerRepo;
+    private final ProgrammerRepo repo;
 
     @Override
     public ProgrammerDto createProgrammer(Programmer programmerRequest) {
@@ -23,35 +22,39 @@ public class ProgrammerServiceImpl implements ProgrammerService {
         programmer.setFirstName(programmerRequest.getFirstName());
         programmer.setLastName(programmerRequest.getLastName());
         programmer.setRepoName(programmerRequest.getRepoName());
-        programmer.setOwnerUsers(programmerRequest.getOwnerUsers());
-        programmerRepo.save(programmer);
+
+        repo.save(programmer);
         return ProgrammerMapper.mapToProgrammerDto(programmer);
     }
 
     @Override
     public List<ProgrammerDto> getProgrammers() {
-        List<Programmer> programmers = programmerRepo.findAll();
+        List<Programmer> programmers = repo.findAll();
         return programmers.stream().map(ProgrammerMapper::mapToProgrammerDto).toList();
     }
 
     @Override
-    public ProgrammerDto getProgrammerById(Long id) {
-        Programmer programmer = programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
+    public ProgrammerDto getProgrammerById(long id) {
+        Programmer programmer = repo.findById(id).orElseThrow(ResourceNotFoundException::new);
+        return ProgrammerMapper.mapToProgrammerDto(programmer);
+    }
+
+
+    public ProgrammerDto updateProgrammer(long id, ProgrammerDto updatedProgrammerDto) {
+        Programmer programmer = repo.findById(id).orElseThrow(ResourceNotFoundException::new);
+
+        programmer.setFirstName(updatedProgrammerDto.getFirstName());
+        programmer.setLastName(updatedProgrammerDto.getLastName());
+        programmer.setRepoName(updatedProgrammerDto.getRepoName());
+
+        Programmer updatedProgrammerObj = repo.save(programmer);
+
         return ProgrammerMapper.mapToProgrammerDto(programmer);
     }
 
     @Override
-    public ProgrammerDto updateProgrammer(Long id) {
-        Programmer programmer = programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
-        programmer.setFirstName(programmer.getFirstName());
-        programmer.setLastName(programmer.getLastName());
-        programmer.setRepoName(programmer.getRepoName());
-        return ProgrammerMapper.mapToProgrammerDto(programmer);
-    }
-
-    @Override
-    public void deleteProgrammer(Long id) {
-        programmerRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
-        programmerRepo.deleteById(id);
+    public void deleteProgrammer(long id) {
+        repo.findById(id).orElseThrow(ResourceNotFoundException::new);
+        repo.deleteById(id);
     }
 }

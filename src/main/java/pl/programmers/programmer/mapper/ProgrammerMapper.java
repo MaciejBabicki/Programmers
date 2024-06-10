@@ -12,7 +12,8 @@ public class ProgrammerMapper {
                 programmer.getId(),
                 programmer.getFirstName(),
                 programmer.getLastName(),
-                programmer.getRepoName()
+                programmer.getRepoName(),
+                programmer.getGithubRepository()
         );
     }
 }
