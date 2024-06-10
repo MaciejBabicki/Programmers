@@ -1,10 +1,12 @@
 package pl.programmers.programmer.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pl.programmers.programmer.entity.GithubRepository;
 import pl.programmers.programmer.pojo.GithubRepositoryDto;
-import pl.programmers.programmer.repository.GithubRepositoryRepo;
 import pl.programmers.programmer.service.GithubRepositoryService;
 import pl.programmers.programmer.service.importservice.GithubImportService;
 import pl.programmers.programmer.service.importservice.TechnologiesInRepo;

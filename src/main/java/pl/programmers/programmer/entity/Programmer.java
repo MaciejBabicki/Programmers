@@ -6,9 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
@@ -21,7 +18,6 @@ public class Programmer {
     private String firstName;
     private String lastName;
     private String repoName;
-
     @OneToOne
     private GithubRepository githubRepository;
 }
