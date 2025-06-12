@@ -1,10 +1,8 @@
 package pl.programmers.programmer.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pl.programmers.programmer.entity.GithubRepository;
 import pl.programmers.programmer.pojo.GithubRepositoryDto;
 import pl.programmers.programmer.service.GithubRepositoryService;
@@ -21,17 +19,37 @@ public class GithubController {
     private final GithubRepositoryService githubRepositoryService;
     private final TechnologiesInRepo technologiesInRepo;
 
-    @PostMapping
-    public GithubRepositoryDto createGithubRepository() {
-        GithubRepository githubRepositoryRequest = new GithubRepository();
-        return githubRepositoryService.createRepository(githubRepositoryRequest);
-    }
-
+    //Saving to local DB repository with exact title.
     @PostMapping("/import-save")
     public GithubRepositoryDto saveGithubRepository() {
         String name = "programmers";
         GithubRepository githubRepository = githubImportService.getGithubRepository(name);
         return githubRepositoryService.createRepository(githubRepository);
+    }
+
+    //Saving to DB repository with exact title and technology
+    @PostMapping
+    public GithubRepositoryDto createGithubRepository() {
+        GithubRepository githubRepositoryRequest = githubImportService
+                .searchRepositoriesWithTitleAndLanguage().getFirst();
+        return githubRepositoryService.createRepository(githubRepositoryRequest);
+    }
+
+    @GetMapping("/{title}+{language}")
+    public List<GithubRepository> getRepositoriesWithTitleAndLanguage() {
+        return githubImportService.searchRepositoriesWithTitleAndLanguage();
+    }
+
+    @GetMapping("/{title}+{language}/{filter}")
+    public ResponseEntity<List<GithubRepository>> getFilteredRepositories(
+            @PathVariable String title,
+            @PathVariable String language,
+            @PathVariable String filter) {
+        List<GithubRepository> repositories = githubImportService
+                .searchRepositoriesWithTitleAndLanguage();
+        List<GithubRepository> filteredRepositories = githubImportService
+                .filterRepositories(repositories, filter);
+        return ResponseEntity.ok(filteredRepositories);
     }
 
     @GetMapping
