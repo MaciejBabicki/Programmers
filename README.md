@@ -1,6 +1,6 @@
 ## General Info
 
-Programmers is a web application designed to assist in managing data about programmers. It allows users to add, edit, and delete programmer profiles, as well as browse their details. The application provides a simple user interface and supports authentication and authorization through Spring Security. 
+Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. It allows to add, edit, and delete programmer profiles, as well as browse their details. 
 I have created this project thinking about two applications:
 1) Application to find the programming-trainer for private lessons
 2) Application to find an employee for a company
