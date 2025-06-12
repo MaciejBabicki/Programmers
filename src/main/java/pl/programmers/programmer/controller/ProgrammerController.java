@@ -15,6 +15,7 @@ import java.util.List;
 public class ProgrammerController {
     private final ProgrammerServiceImpl programmerServiceImpl;
 
+    //Save programmer to DB
     @PostMapping
     public ProgrammerDto createProgrammer(@RequestBody ProgrammerDto programmerDto) {
         Programmer programmerRequest = new Programmer();
@@ -25,22 +26,25 @@ public class ProgrammerController {
         return programmerServiceImpl.createProgrammer(programmerRequest);
     }
 
+    //Get programmer from DB by id
     @GetMapping("/{id}")
     public ProgrammerDto getProgrammerById(@PathVariable("id") long id) {
         return programmerServiceImpl.getProgrammerById(id);
     }
 
+    //Update programmer in DB
     @PutMapping("/{id}")
     public ProgrammerDto updateProgrammer(@PathVariable("id") long id, @RequestBody ProgrammerDto updatedProgrammer) {
         return programmerServiceImpl.updateProgrammer(id);
     }
 
+    //Delete programmer from DB
     @DeleteMapping("/{id}")
     public void deleteProgrammer(@PathVariable("id") long id) {
         programmerServiceImpl.deleteProgrammer(id);
     }
 
-    //Get programmers from DB
+    //Get all programmers from DB
     @GetMapping
     public List<ProgrammerDto> getProgrammers() {
         return programmerServiceImpl.getProgrammers();

@@ -14,8 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/repos")
 public class GithubController {
+    //Object which imports data from Github
     private final GithubImportService githubImportService;
+    //Object which save records to DB
     private final GithubRepositoryService githubRepositoryService;
+    //Object which imports information about technologies
     private final TechnologiesInRepo technologiesInRepo;
     String code;
 
