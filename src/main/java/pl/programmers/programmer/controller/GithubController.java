@@ -1,7 +1,6 @@
 package pl.programmers.programmer.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.programmers.programmer.entity.GithubRepository;
 import pl.programmers.programmer.pojo.GithubRepositoryDto;
@@ -18,16 +17,14 @@ public class GithubController {
     private final GithubImportService githubImportService;
     private final GithubRepositoryService githubRepositoryService;
     private final TechnologiesInRepo technologiesInRepo;
+    String code;
 
-    //Saving to local DB repository with exact title.
-    @PostMapping("/import-save")
-    public GithubRepositoryDto saveGithubRepository() {
-        String name = "programmers";
-        GithubRepository githubRepository = githubImportService.getGithubRepository(name);
-        return githubRepositoryService.createRepository(githubRepository);
+    //Fething a repository from GitHub with exact title and technology
+    @GetMapping("/{title}+{language}")
+    public List<GithubRepository> getRepositoriesWithTitleAndLanguage() {
+        return githubImportService.searchRepositoriesWithTitleAndLanguage();
     }
-
-    //Saving to DB repository with exact title and technology
+    //Fething and saving to DB repository with exact title and technology
     @PostMapping
     public GithubRepositoryDto createGithubRepository() {
         GithubRepository githubRepositoryRequest = githubImportService
@@ -35,41 +32,21 @@ public class GithubController {
         return githubRepositoryService.createRepository(githubRepositoryRequest);
     }
 
-    @GetMapping("/{title}+{language}")
-    public List<GithubRepository> getRepositoriesWithTitleAndLanguage() {
-        return githubImportService.searchRepositoriesWithTitleAndLanguage();
-    }
-
-    @GetMapping("/{title}+{language}/{filter}")
-    public ResponseEntity<List<GithubRepository>> getFilteredRepositories(
-            @PathVariable String title,
-            @PathVariable String language,
-            @PathVariable String filter) {
-        List<GithubRepository> repositories = githubImportService
-                .searchRepositoriesWithTitleAndLanguage();
-        List<GithubRepository> filteredRepositories = githubImportService
-                .filterRepositories(repositories, filter);
-        return ResponseEntity.ok(filteredRepositories);
-    }
-
+    //Show all repositories from GitHub for exact programmer
     @GetMapping
     public List<GithubRepository> getGithubRepositories() {
         return githubImportService.getGithubRepositories();
     }
 
+    //Show repositories from DB
     @GetMapping("/dbrepositories")
     public List<GithubRepositoryDto> githubRepositoriesFromDB() {
         return githubRepositoryService.getGithubRepositories();
     }
 
-    @GetMapping("/one")
-    public GithubRepository getOneRepository() {
-        String aa = "programmers";
-        return githubImportService.getGithubRepository(aa);
-    }
-
+    //Show technologies used in repository
     @GetMapping("/technologies")
     public void getTechnologies() {
-        technologiesInRepo.showTechnologies();
+        technologiesInRepo.showTechnologies(code);
     }
 }
