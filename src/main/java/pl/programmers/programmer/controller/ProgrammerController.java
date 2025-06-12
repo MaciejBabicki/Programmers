@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.programmers.programmer.entity.Programmer;
 import pl.programmers.programmer.pojo.ProgrammerDto;
 import pl.programmers.programmer.service.ProgrammerServiceImpl;
-import pl.programmers.programmer.service.importservice.ProgrammerImportService;
 
 import java.util.List;
 
@@ -15,12 +14,6 @@ import java.util.List;
 @RequestMapping("/programmers")
 public class ProgrammerController {
     private final ProgrammerServiceImpl programmerServiceImpl;
-    private final ProgrammerImportService programmerImportService;
-
-    @GetMapping("/data")
-    public Programmer getData(){
-        return programmerImportService.getProgrammers("https://api.github.com/MaciejBabicki");
-    }
 
     @PostMapping
     public ProgrammerDto createProgrammer(@RequestBody ProgrammerDto programmerDto) {
@@ -39,7 +32,7 @@ public class ProgrammerController {
 
     @PutMapping("/{id}")
     public ProgrammerDto updateProgrammer(@PathVariable("id") long id, @RequestBody ProgrammerDto updatedProgrammer) {
-        return programmerServiceImpl.updateProgrammer(id, updatedProgrammer);
+        return programmerServiceImpl.updateProgrammer(id);
     }
 
     @DeleteMapping("/{id}")
@@ -47,6 +40,7 @@ public class ProgrammerController {
         programmerServiceImpl.deleteProgrammer(id);
     }
 
+    //Get programmers from DB
     @GetMapping
     public List<ProgrammerDto> getProgrammers() {
         return programmerServiceImpl.getProgrammers();
