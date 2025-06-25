@@ -1,6 +1,6 @@
 ## General Info
 
-Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. When user find repositories created by concrete programmers then is able to manipulate records to local database. I host backend and also frontend of this application by AWS EC2. It is deployed on Linux operating system.
+Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. When user find repositories created by concrete programmers then is able to manipulate records to local database. I host backend and also frontend of this application by AWS EC2. 
 
 
 ## Key Features:
@@ -21,7 +21,7 @@ Programmers is a web application designed to assist in managing data about progr
 
 **Databese:** MySQL 
 
-**Deployment**: AWS EC2 
+**Deployment**: AWS EC2 (Linux)
 
 **Security**: Spring Security
 
