@@ -10,7 +10,7 @@ I have created this project thinking about two applications:
 - **CRUD:** Users can create, read, ubdate, delete programmer profiles by providing most necessary details.
   [Programmers](http://ec2-3-126-250-109.eu-central-1.compute.amazonaws.com:81/Programmers/)
   
-- **Public API:** Application also gives public Api which fetch data from GITHUB API and filters it by title, technology.
+- **Public API:** Application also gives public Api which fetch data from GITHUB API and filters it by title, technology(Type the tittle+technology in the end of the url).
   [API](http://ec2-3-126-250-109.eu-central-1.compute.amazonaws.com:8080/repos/Wheater+java)
   
 - **Browse Data:** Users can browse available programmer profiles, checking their skills, experience, and other information.
