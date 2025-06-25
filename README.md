@@ -1,9 +1,7 @@
 ## General Info
 
-Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. It allows to add, edit, and delete programmer profiles, as well as browse their details. 
-I have created this project thinking about two applications:
-1) Application to find the programming-trainer for private lessons
-2) Application to find an employee for a company
+Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. When user find repositories created by concrete programmers then is able to create records to local database.  It allows to add, edit, and delete programmer profiles, as well as browse their details. 
+
 
 ## Key Features:
 
