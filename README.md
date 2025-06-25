@@ -1,6 +1,6 @@
 ## General Info
 
-Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. When user find repositories created by concrete programmers then is able to create records to local database.  It allows to add, edit, and delete programmer profiles, as well as browse their details. 
+Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. When user find repositories created by concrete programmers then is able to manipulate records to local database. 
 
 
 ## Key Features:
