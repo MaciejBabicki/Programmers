@@ -7,15 +7,13 @@ I have created this project thinking about two applications:
 
 ## Key Features:
 
-- **Add Programmer:** Users can add new programmer profiles by providing relevant details such as name, surname, skills, experience, etc.
-
-- **Edit Profiles:** Existing programmer profiles can be edited to update information. Users can modify programmer details, add new skills, update experience, etc.
-
-- **Delete Profiles:** The application enables the removal of unnecessary programmer profiles from the database.
+- **CRUD:** Users can create, read, ubdate, delete programmer profiles by providing most necessary details.
+- 
+- **Public API:** Application also gives public Api which fetch data from GITHUB API and filters it by title, technology.
+  
+  ![Programmers](http://ec2-3-126-250-109.eu-central-1.compute.amazonaws.com:81/Programmers/)
 
 - **Browse Data:** Users can browse available programmer profiles, checking their skills, experience, and other information.
-
-- **Authentication and Authorization:** Access to the application is secured using Spring Security, requiring users to authenticate through login.
 
 ## Technologies:
 
