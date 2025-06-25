@@ -11,7 +11,7 @@ I have created this project thinking about two applications:
 - 
 - **Public API:** Application also gives public Api which fetch data from GITHUB API and filters it by title, technology.
   
-  ![Programmers](http://ec2-3-126-250-109.eu-central-1.compute.amazonaws.com:81/Programmers/)
+  [Programmers](http://ec2-3-126-250-109.eu-central-1.compute.amazonaws.com:81/Programmers/)
 
 - **Browse Data:** Users can browse available programmer profiles, checking their skills, experience, and other information.
 
