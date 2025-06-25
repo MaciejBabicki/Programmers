@@ -8,11 +8,11 @@ I have created this project thinking about two applications:
 ## Key Features:
 
 - **CRUD:** Users can create, read, ubdate, delete programmer profiles by providing most necessary details.
-- 
-- **Public API:** Application also gives public Api which fetch data from GITHUB API and filters it by title, technology.
-  
   [Programmers](http://ec2-3-126-250-109.eu-central-1.compute.amazonaws.com:81/Programmers/)
-
+  
+- **Public API:** Application also gives public Api which fetch data from GITHUB API and filters it by title, technology.
+  [API](http://ec2-3-126-250-109.eu-central-1.compute.amazonaws.com:8080/repos/Wheater+java)
+  
 - **Browse Data:** Users can browse available programmer profiles, checking their skills, experience, and other information.
 
 ## Technologies:
@@ -28,11 +28,9 @@ I have created this project thinking about two applications:
 **Security**: Spring Security
 
 
-![Programmers](https://github.com/MaciejBabicki/Programmers/assets/123827748/c271de49-bc31-4677-a039-b11874ff387e)
-
 ## System Requirements:
 
-- Java 8 or higher
+- Java 21 or higher
 - MySQL (installed locally or available as a remote service)
 
 ## Setup
