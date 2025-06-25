@@ -22,10 +22,7 @@ public class GithubImportService {
     private final String language;
     private final String githubApiUrl2;
 
-    public GithubImportService(RestTemplate restTemplate, @Value("${github.api.url}") String githubApiUrl,
-                               @Value("${github.login}") String login, @Value("${github.search.query}") String githubSearchQuery,
-                               @Value("${github.search.language}") String language,
-                               @Value("${github.api.url2}") String githubApiUrl2) {
+    public GithubImportService(RestTemplate restTemplate, @Value("${github.api.url}") String githubApiUrl, @Value("${github.login}") String login, @Value("${github.search.query}") String githubSearchQuery, @Value("${github.search.language}") String language, @Value("${github.api.url2}") String githubApiUrl2) {
         this.restTemplate = restTemplate;
         this.githubApiUrl = githubApiUrl;
         this.login = login;
@@ -36,8 +33,7 @@ public class GithubImportService {
 
     public List<GithubRepositoryDto> searchRepositoriesWithTitleAndLanguage() {
         String url = githubApiUrl2 + "?q=" + githubSearchQuery + "+language:" + language;
-        GithubResponseDto responseEntity = restTemplate.
-                getForObject(url, GithubResponseDto.class);
+        GithubResponseDto responseEntity = restTemplate.getForObject(url, GithubResponseDto.class);
         if (responseEntity != null) {
             return responseEntity.getItems();
         }
@@ -51,9 +47,7 @@ public class GithubImportService {
             throw new ResourceNotFoundException();
         }
         GithubRepository[] allRepositories = responseEntity.getBody();
-        return Arrays.stream(allRepositories)
-                .peek(this::fetchBranches)
-                .toList();
+        return Arrays.stream(allRepositories).peek(this::fetchBranches).toList();
     }
 
     List<Branch> fetchBranches(GithubRepository githubRepository) {
