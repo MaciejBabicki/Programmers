@@ -2,11 +2,16 @@ package pl.programmers.programmer.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import pl.programmers.programmer.entity.Branch;
+import pl.programmers.programmer.entity.GithubRepository;
 import pl.programmers.programmer.entity.Owner;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
+@Setter
 @Getter
 @AllArgsConstructor
 public class GithubRepositoryDto {
@@ -16,4 +21,7 @@ public class GithubRepositoryDto {
     private Owner owner;
     private List<Branch> branches;
     private String url;
+
+
+
 }

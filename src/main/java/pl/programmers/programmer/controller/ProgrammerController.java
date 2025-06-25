@@ -8,7 +8,7 @@ import pl.programmers.programmer.service.ProgrammerServiceImpl;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/programmers")
@@ -35,7 +35,7 @@ public class ProgrammerController {
     //Update programmer in DB
     @PutMapping("/{id}")
     public ProgrammerDto updateProgrammer(@PathVariable("id") long id, @RequestBody ProgrammerDto updatedProgrammer) {
-        return programmerServiceImpl.updateProgrammer(id);
+        return programmerServiceImpl.updateProgrammer(id, updatedProgrammer);
     }
 
     //Delete programmer from DB

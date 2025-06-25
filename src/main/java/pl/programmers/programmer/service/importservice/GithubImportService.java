@@ -7,7 +7,8 @@ import org.springframework.web.client.RestTemplate;
 import pl.programmers.programmer.entity.Branch;
 import pl.programmers.programmer.entity.GithubRepository;
 import pl.programmers.programmer.exception.ResourceNotFoundException;
-import pl.programmers.programmer.pojo.GithubRepositoryResponse;
+import pl.programmers.programmer.pojo.GithubRepositoryDto;
+import pl.programmers.programmer.pojo.GithubResponseDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,10 +34,10 @@ public class GithubImportService {
         this.githubApiUrl2 = githubApiUrl2;
     }
 
-    public List<GithubRepository> searchRepositoriesWithTitleAndLanguage() {
+    public List<GithubRepositoryDto> searchRepositoriesWithTitleAndLanguage() {
         String url = githubApiUrl2 + "?q=" + githubSearchQuery + "+language:" + language;
-        GithubRepositoryResponse responseEntity = restTemplate.
-                getForObject(url, GithubRepositoryResponse.class);
+        GithubResponseDto responseEntity = restTemplate.
+                getForObject(url, GithubResponseDto.class);
         if (responseEntity != null) {
             return responseEntity.getItems();
         }
