@@ -1,6 +1,7 @@
 ## General Info
 
-Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. When user find repositories created by concrete programmers then is able to manipulate records to local database. I host backend and also frontend of this application by AWS EC2. Link to working app: [Programmers](https://maciejcreatessoft.com/)
+Programmers is a web application designed to assist in managing data about programmers. It connects to github API, search throught the the repositories and fetchs the data. When user find repositories created by concrete programmers then is able to manipulate records to local database. I host backend and also frontend of this application by AWS EC2. 
+Link to the working app: [Programmers](https://maciejcreatessoft.com/)
 
 
 ## Key Features:
